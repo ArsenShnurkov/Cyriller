@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\Publish\Cyriller.WebR</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/Cyriller.dll">
+      <publishTime>01/06/2015 11:32:51</publishTime>
+    </File>
+    <File Include="bin/Cyriller.Web.dll">
+      <publishTime>01/06/2015 11:32:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>12/24/2014 23:10:46</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/05/2015 18:34:34</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/05/2015 18:34:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/05/2015 18:34:33</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/05/2015 18:34:30</publishTime>
+    </File>
+    <File Include="Content/font-awesome.min.css">
+      <publishTime>01/05/2015 18:36:55</publishTime>
+    </File>
+    <File Include="Content/images/logo-small.png">
+      <publishTime>01/05/2015 18:52:22</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/06/2015 11:32:28</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/05/2015 21:21:27</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>01/05/2015 18:36:38</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>01/05/2015 18:36:38</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>01/05/2015 18:36:38</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff">
+      <publishTime>01/05/2015 18:36:38</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>01/05/2015 18:36:38</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/05/2015 18:34:29</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/05/2015 18:34:34</publishTime>
+    </File>
+    <File Include="robots.txt">
+      <publishTime>01/06/2015 06:33:29</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/05/2015 18:34:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>01/05/2015 18:34:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>01/05/2015 18:34:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>01/05/2015 18:34:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>01/05/2015 18:34:34</publishTime>
+    </File>
+    <File Include="sitemap.xml">
+      <publishTime>01/05/2015 22:05:44</publishTime>
+    </File>
+    <File Include="Views/Error/p403.cshtml">
+      <publishTime>01/06/2015 06:43:53</publishTime>
+    </File>
+    <File Include="Views/Error/p404.cshtml">
+      <publishTime>01/06/2015 06:43:26</publishTime>
+    </File>
+    <File Include="Views/Error/p500.cshtml">
+      <publishTime>01/06/2015 06:44:08</publishTime>
+    </File>
+    <File Include="Views/Home/Contacts.cshtml">
+      <publishTime>01/05/2015 22:54:13</publishTime>
+    </File>
+    <File Include="Views/Home/Decline.cshtml">
+      <publishTime>01/05/2015 22:02:45</publishTime>
+    </File>
+    <File Include="Views/Home/Download.cshtml">
+      <publishTime>01/06/2015 11:15:02</publishTime>
+    </File>
+    <File Include="Views/Home/DownloadFile.cshtml">
+      <publishTime>01/06/2015 11:12:23</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/06/2015 06:54:59</publishTime>
+    </File>
+    <File Include="Views/Home/Thanks.cshtml">
+      <publishTime>01/05/2015 23:00:23</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>01/05/2015 18:34:29</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>01/06/2015 12:03:02</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>01/05/2015 18:34:29</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/05/2015 18:34:29</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/06/2015 07:00:34</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
