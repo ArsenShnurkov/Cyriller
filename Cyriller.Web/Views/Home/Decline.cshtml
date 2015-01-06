@@ -5,12 +5,12 @@
 
     if (text == null)
     {
-        h = ViewBag.Title = "Склонения слова по падежам";
+        h = ViewBag.Title = "Склонение слова по падежам";
     }
     else
     {
-        ViewBag.Title = string.Format("Склонения слова \"{0}\" по падежам", text);
-        h = string.Format("Склонения слова <strong>{0}</strong> по падежам", text);
+        ViewBag.Title = string.Format("Склонение слова \"{0}\" по падежам", text);
+        h = string.Format("Склонение слова <strong>{0}</strong> по падежам", text);
     }
 }
 <h1>@Html.Raw(h)</h1>
@@ -26,7 +26,7 @@
 <fieldset>
     <legend></legend>
     <form action="@Url.Content("~/Decline")" method="get" class="decline-form">
-        <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите слово" />
+        <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите слово в именительном падеже" />
         <button class="btn btn-primary" type="submit">Склонять</button>
     </form>
 </fieldset>
