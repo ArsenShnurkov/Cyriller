@@ -1,0 +1,161 @@
+﻿@using Cyriller;
+@{
+    string text = ViewBag.Text;
+    string h;
+
+    if (text == null)
+    {
+        h = ViewBag.Title = "Склонение прилагательного по падежам";
+    }
+    else
+    {
+        ViewBag.Title = string.Format("Склонение прилагательного \"{0}\" по падежам", text);
+        h = string.Format("Склонение прилагательного <strong>{0}</strong> по падежам", text);
+    }
+}
+<h1>@Html.Raw(h)</h1>
+@if (ViewBag.Errors != null)
+{
+    foreach (string error in ViewBag.Errors)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(error)
+        </div>
+    }
+}
+<fieldset>
+    <legend></legend>
+    <form method="get" class="decline-form form-horizontal">
+        <div class="col-lg-10">
+            <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите прилагательное в именительном падеже" />
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-primary" type="submit">Склонять</button>
+        </div>
+    </form>
+</fieldset>
+@if (ViewBag.Words != null)
+{
+    for (int i = 0; i < ViewBag.Words.Count; i++)
+    {
+        CyrAdjective cyr = ViewBag.Words[i];
+        CyrResult singular = ViewBag.Singulars[i];
+        CyrResult plural = ViewBag.Plurals[i];
+        <h2 class="h-word">
+            <strong>@cyr.Name</strong>,
+            <span class="gender">
+                @switch (cyr.Gender)
+                {
+                    case Cyriller.Model.GendersEnum.Feminine: <em>женский</em>; break;
+                    case Cyriller.Model.GendersEnum.Neuter: <em>средний</em>; break;
+                    default:  <em>мужской</em>; break;
+                }
+                род
+            </span>
+        </h2>
+        if (!cyr.ExactMatch)
+        {
+            <div class="alert alert-danger">
+                Слова <strong>@cyr.Name</strong> нет в словаре, но есть слово <strong>@cyr.CollectionName</strong>
+            </div>
+        }
+        <table class="table table-bordered table-cases">
+            <thead>
+                <tr>
+                    <th class="td-case">Падеж</th>
+                    <th class="td-value">Единственное число</th>
+                    <th class="td-value">Множественное число</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Именительный, <span class="label label-default">Кто? Что? (есть)</span>
+                    </td>
+                    <td>
+                        @singular[1]
+                    </td>
+                    <td>
+                        @plural[1]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Родительный, <span class="label label-default">Кого? Чего? (нет)</span>
+                    </td>
+                    <td>
+                        @singular[2]
+                    </td>
+                    <td>
+                        @plural[2]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Дательный, <span class="label label-default">Кому? Чему? (дам)</span>
+                    </td>
+                    <td>
+                        @singular[3]
+                    </td>
+                    <td>
+                        @plural[3]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Винительный, <span class="label label-default">Кого? Что? (вижу)</span>
+                    </td>
+                    <td>
+                        @singular[4]
+                    </td>
+                    <td>
+                        @plural[4]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Творительный, <span class="label label-default">Кем? Чем? (горжусь)</span>
+                    </td>
+                    <td>
+                        @singular[5]
+                    </td>
+                    <td>
+                        @plural[5]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Предложный, <span class="label label-default">О ком? О чем? (думаю)</span>
+                    </td>
+                    <td>
+                        @singular[6]
+                    </td>
+                    <td>
+                        @plural[6]
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <p class="p p-examples">
+        Введите слово или полное ФИО для склонения по падежам.<br />Например:
+        <a href="javascript:">качественный</a>,
+        <a href="javascript:">красивая</a>,
+        <a href="javascript:">большой</a>,
+        <a href="javascript:">яркий</a>,
+        <a href="javascript:">зеленое</a>.
+    </p>
+}
+@section scripts
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".p-examples a").click(function () {
+            $(".decline-form input").val($(this).text());
+        });
+    });
+    </script>
+}

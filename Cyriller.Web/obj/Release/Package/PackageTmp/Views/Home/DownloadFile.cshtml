@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Скачать - " + ViewBag.ID;
+}
+
+<h1>@ViewBag.Title</h1>
+<div class="alert alert-info">
+    Скачивание файла начнется через несколько секунд.
+    <br />
+    Если скачивание файла не началось, перейтиде по прямой:
+    <a id="download" href="@ViewBag.Url" target="_blank">скачать</a>.
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            window.location = $("#download").attr("href");
+            setTimeout(function () {
+                window.close();
+            }, 5000);
+        });
+    </script>
+}

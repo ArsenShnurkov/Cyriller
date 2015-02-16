@@ -17,16 +17,36 @@
                         Главная
                     </a>
                 </li>
-                <li class="@(ViewBag.Page == "Home.Decline" ? "active" : string.Empty)">
-                    <a href="@Url.Content("~/Decline")">
+                <li class="@(ViewBag.Page.StartsWith("Decline.") ? "active" : string.Empty)">
+                    <a href="@Url.Content("~/Decline/Phrase")">
                         <i class="fa fa-language"></i>
                         Склонять
                     </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="@Url.Content("~/Decline/Noun")">Существительное</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Decline/Adjective")">Прилагательное</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Decline/Phrase")">Целую фразу</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Decline/Number")">Число прописью</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="@(ViewBag.Page == "Home.Download" ? "active" : string.Empty)">
                     <a href="@Url.Content("~/Download")">
                         <i class="fa fa-download"></i>
                         Скачать
+                    </a>
+                </li>
+                <li class="@(ViewBag.Page == "Home.News" ? "active" : string.Empty)">
+                    <a href="@Url.Content("~/News")">
+                        <i class="fa fa-road"></i>
+                        Новости
                     </a>
                 </li>
                 <li class="@(ViewBag.Page == "Home.Contacts" ? "active" : string.Empty)">
@@ -90,24 +110,22 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="@Url.Content("~/")">
-                            Главная
-                        </a>
+                        <a href="@Url.Content("~/")">Главная</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Decline")">
-                            Склонять
-                        </a>
+                        <a href="@Url.Content("~/Decline/Phrase")">Склонять</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Download")">
-                            Скачать
-                        </a>
+                        <a href="@Url.Content("~/Decline/Number")">Число прописью</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Contacts")">
-                            Контакты
-                        </a>
+                        <a href="@Url.Content("~/Download")">Скачать</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content("~/News")">Новости</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content("~/Contacts")">Контакты</a>
                     </li>
                 </ul>
             </nav>

@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -116,6 +117,7 @@
     <Compile Include="Code\GzipFilter.cs" />
     <Compile Include="Code\NoSpaceStream.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DeclineController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,9 +177,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Decline.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\Download.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <Content Include="Views\Decline\Number.cshtml" />
+    <Content Include="Views\Home\DeclineMany.cshtml" />
+    <Content Include="Views\Decline\Noun.cshtml" />
+    <Content Include="Views\Decline\Adjective.cshtml" />
+    <Content Include="Views\Decline\Phrase.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,153 @@
+﻿@using Cyriller;
+@{
+    string text = ViewBag.Text;
+    string h;
+
+    if (text == null)
+    {
+        h = ViewBag.Title = "Написание числа прописью";
+    }
+    else if (ViewBag.ItemText != null)
+    {
+        ViewBag.Title = string.Format("Написание значения \"{0} {1}\" прописью", text, ViewBag.ItemText);
+        h = string.Format("Написание значения <strong>{0} {1}</strong> прописью", text, ViewBag.ItemText);
+    }
+    else if (ViewBag.CurrencyClass != null)
+    {
+        ViewBag.Title = string.Format("Написание суммы \"{0} {1}\" прописью", text, ViewBag.CurrencyText);
+        h = string.Format("Написание суммы <strong>{0} <i class='fa {1}'></i></strong> прописью", text, ViewBag.CurrencyClass);
+    }
+    else
+    {
+        ViewBag.Title = string.Format("Написание числа \"{0}\" прописью", text);
+        h = string.Format("Написание числа <strong>{0}</strong> прописью", text);
+    }
+}
+<h1>@Html.Raw(h)</h1>
+@if (ViewBag.Errors != null)
+{
+    foreach (string error in ViewBag.Errors)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(error)
+        </div>
+    }
+}
+<fieldset>
+    <legend></legend>
+    <form method="get" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="number" name="w" class="form-control" value="@text" required="required" placeholder="Введите число" step="0.01" title="Разделитель - точка" />
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="a" id="ddlAction">
+                    <option value="Item" @(ViewBag.Action == "Item" ? "selected" : string.Empty)>Единица измерения</option>
+                    <option value="Masculine" @(ViewBag.Action == "Masculine" ? "selected" : string.Empty)>Мужской род</option>
+                    <option value="Feminine" @(ViewBag.Action == "Feminine" ? "selected" : string.Empty)>Женский род</option>
+                    <option value="Rub" @(ViewBag.Action == "Rub" ? "selected" : string.Empty)>Рубли</option>
+                    <option value="Usd" @(ViewBag.Action == "Usd" ? "selected" : string.Empty)>Доллары</option>
+                    <option value="Eur" @(ViewBag.Action == "Eur" ? "selected" : string.Empty)>Евро</option>
+                    <option value="Yuan" @(ViewBag.Action == "Yuan" ? "selected" : string.Empty)>Юани</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" name="i" class="form-control" value="@ViewBag.Item" required="required" placeholder="Единица измерения" id="txtItem" @(ViewBag.Action != "Item" ? "disabled" : string.Empty) />
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="submit">Склонять</button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+@if (ViewBag.Result != null)
+{
+    CyrResult result = ViewBag.Result;
+    <table class="table table-bordered table-cases">
+        <thead>
+            <tr>
+                <th class="td-case">Падеж</th>
+                <th class="td-value">Значение</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Именительный, <span class="label label-default">Кто? Что? (есть)</span>
+                </td>
+                <td>
+                    @result[1]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Родительный, <span class="label label-default">Кого? Чего? (нет)</span>
+                </td>
+                <td>
+                    @result[2]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дательный, <span class="label label-default">Кому? Чему? (дам)</span>
+                </td>
+                <td>
+                    @result[3]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Винительный, <span class="label label-default">Кого? Что? (вижу)</span>
+                </td>
+                <td>
+                    @result[4]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Творительный, <span class="label label-default">Кем? Чем? (горжусь)</span>
+                </td>
+                <td>
+                    @result[5]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Предложный, <span class="label label-default">О ком? О чем? (думаю)</span>
+                </td>
+                <td>
+                    @result[6]
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="p p-examples">
+        Введите целое или дробное число для написания прописью во всех падежах.<br />Например:
+        <a href="javascript:">64</a>,
+        <a href="javascript:">512</a>,
+        <a href="javascript:">2048</a>,
+        <a href="javascript:">3.14</a>,
+        <a href="javascript:">9.8</a>.
+    </p>
+}
+@section scripts
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".p-examples a").click(function () {
+            $(".form-horizontal input:first").val($(this).text());
+        });
+
+        $("#ddlAction").change(function () {
+            if ($(this).val() == "Item") {
+                $("#txtItem").removeAttr("disabled");
+            } else {
+                $("#txtItem").attr("disabled", "disabled");
+            }
+        });
+    });
+    </script>
+}

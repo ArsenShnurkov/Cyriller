@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CyrillerModelStoreContainer" CdmEntityContainer="CyrillerEntities">
+    <EntitySetMapping Name="Animates">
+      <EntityTypeMapping TypeName="CyrillerModel.Animate">
+        <MappingFragment StoreEntitySet="Animates">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SysName" ColumnName="SysName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cases">
+      <EntityTypeMapping TypeName="CyrillerModel.Case">
+        <MappingFragment StoreEntitySet="Cases">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="SysName" ColumnName="SysName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="CyrillerModel.Gender">
+        <MappingFragment StoreEntitySet="Genders">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="SysName" ColumnName="SysName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Numbers">
+      <EntityTypeMapping TypeName="CyrillerModel.Number">
+        <MappingFragment StoreEntitySet="Numbers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SysName" ColumnName="SysName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RawWords">
+      <EntityTypeMapping TypeName="CyrillerModel.RawWord">
+        <MappingFragment StoreEntitySet="RawWords">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LemmaID" ColumnName="LemmaID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SpeechPartID" ColumnName="SpeechPartID" />
+          <ScalarProperty Name="Xml" ColumnName="Xml" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpeechParts">
+      <EntityTypeMapping TypeName="CyrillerModel.SpeechPart">
+        <MappingFragment StoreEntitySet="SpeechParts">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="SysName" ColumnName="SysName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WordCases">
+      <EntityTypeMapping TypeName="CyrillerModel.WordCase">
+        <MappingFragment StoreEntitySet="WordCases">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WordID" ColumnName="WordID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="NumberID" ColumnName="NumberID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AnimateID" ColumnName="AnimateID" />
+          <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="Checked" ColumnName="Checked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Words">
+      <EntityTypeMapping TypeName="CyrillerModel.Word">
+        <MappingFragment StoreEntitySet="Words">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SpeechPartID" ColumnName="SpeechPartID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+          <ScalarProperty Name="AnimateID" ColumnName="AnimateID" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WordTypes">
+      <EntityTypeMapping TypeName="CyrillerModel.WordType">
+        <MappingFragment StoreEntitySet="WordTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SysName" ColumnName="SysName" />
+          <ScalarProperty Name="SpeechPartID" ColumnName="SpeechPartID" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UpdateWordCases" FunctionName="CyrillerModel.Store.UpdateWordCases" />
+  </EntityContainerMapping>
+</Mapping>

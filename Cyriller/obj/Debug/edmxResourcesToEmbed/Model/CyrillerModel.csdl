@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CyrillerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CyrillerEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Animates" EntityType="CyrillerModel.Animate" />
+    <EntitySet Name="Cases" EntityType="CyrillerModel.Case" />
+    <EntitySet Name="Genders" EntityType="CyrillerModel.Gender" />
+    <EntitySet Name="Numbers" EntityType="CyrillerModel.Number" />
+    <EntitySet Name="SpeechParts" EntityType="CyrillerModel.SpeechPart" />
+    <EntitySet Name="WordCases" EntityType="CyrillerModel.WordCase" />
+    <EntitySet Name="Words" EntityType="CyrillerModel.Word" />
+    <EntitySet Name="WordTypes" EntityType="CyrillerModel.WordType" />
+    <AssociationSet Name="FK_WordCases_Animates" Association="CyrillerModel.FK_WordCases_Animates">
+      <End Role="Animate" EntitySet="Animates" />
+      <End Role="WordCas" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_Animates" Association="CyrillerModel.FK_Words_Animates">
+      <End Role="Animate" EntitySet="Animates" />
+      <End Role="Word" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Cases" Association="CyrillerModel.FK_WordCases_Cases">
+      <End Role="Case" EntitySet="Cases" />
+      <End Role="WordCas" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_Genders" Association="CyrillerModel.FK_Words_Genders">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Word" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Numbers" Association="CyrillerModel.FK_WordCases_Numbers">
+      <End Role="Number" EntitySet="Numbers" />
+      <End Role="WordCas" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_SpeechParts" Association="CyrillerModel.FK_Words_SpeechParts">
+      <End Role="SpeechPart" EntitySet="SpeechParts" />
+      <End Role="Word" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Words" Association="CyrillerModel.FK_WordCases_Words">
+      <End Role="Word" EntitySet="Words" />
+      <End Role="WordCas" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_WordTypes" Association="CyrillerModel.FK_Words_WordTypes">
+      <End Role="WordType" EntitySet="WordTypes" />
+      <End Role="Word" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Genders" Association="CyrillerModel.FK_WordCases_Genders">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="WordCase" EntitySet="WordCases" />
+    </AssociationSet>
+    <EntitySet Name="RawWords" EntityType="CyrillerModel.RawWord" />
+    <AssociationSet Name="FK_RawWords_SpeechParts" Association="CyrillerModel.FK_RawWords_SpeechParts">
+      <End Role="SpeechPart" EntitySet="SpeechParts" />
+      <End Role="RawWord" EntitySet="RawWords" />
+    </AssociationSet>
+    <FunctionImport Name="UpdateWordCases">
+      <Parameter Name="WordID" Mode="In" Type="Int32" />
+      <Parameter Name="Case1" Mode="In" Type="String" />
+      <Parameter Name="Case2" Mode="In" Type="String" />
+      <Parameter Name="Case3" Mode="In" Type="String" />
+      <Parameter Name="Case4" Mode="In" Type="String" />
+      <Parameter Name="Case5" Mode="In" Type="String" />
+      <Parameter Name="Case6" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Animate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SysName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+    <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WordCases" Relationship="CyrillerModel.FK_WordCases_Animates" FromRole="Animate" ToRole="WordCas" />
+    <NavigationProperty Name="Words" Relationship="CyrillerModel.FK_Words_Animates" FromRole="Animate" ToRole="Word" />
+  </EntityType>
+  <EntityType Name="Case">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ShortName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SysName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+    <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WordCases" Relationship="CyrillerModel.FK_WordCases_Cases" FromRole="Case" ToRole="WordCas" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ShortName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SysName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+    <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Words" Relationship="CyrillerModel.FK_Words_Genders" FromRole="Gender" ToRole="Word" />
+    <NavigationProperty Name="WordCases" Relationship="CyrillerModel.FK_WordCases_Genders" FromRole="Gender" ToRole="WordCase" />
+  </EntityType>
+  <EntityType Name="Number">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SysName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+    <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WordCases" Relationship="CyrillerModel.FK_WordCases_Numbers" FromRole="Number" ToRole="WordCas" />
+  </EntityType>
+  <EntityType Name="SpeechPart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ShortName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SysName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+    <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Words" Relationship="CyrillerModel.FK_Words_SpeechParts" FromRole="SpeechPart" ToRole="Word" />
+    <NavigationProperty Name="RawWords" Relationship="CyrillerModel.FK_RawWords_SpeechParts" FromRole="SpeechPart" ToRole="RawWord" />
+  </EntityType>
+  <EntityType Name="WordCase">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="WordID" Nullable="false" />
+    <Property Type="Int32" Name="CaseID" Nullable="false" />
+    <Property Type="Int32" Name="NumberID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="AnimateID" />
+    <NavigationProperty Name="Animate" Relationship="CyrillerModel.FK_WordCases_Animates" FromRole="WordCas" ToRole="Animate" />
+    <NavigationProperty Name="Case" Relationship="CyrillerModel.FK_WordCases_Cases" FromRole="WordCas" ToRole="Case" />
+    <NavigationProperty Name="Number" Relationship="CyrillerModel.FK_WordCases_Numbers" FromRole="WordCas" ToRole="Number" />
+    <NavigationProperty Name="Word" Relationship="CyrillerModel.FK_WordCases_Words" FromRole="WordCas" ToRole="Word" />
+    <Property Type="Int32" Name="GenderID" />
+    <NavigationProperty Name="Gender" Relationship="CyrillerModel.FK_WordCases_Genders" FromRole="WordCase" ToRole="Gender" />
+    <Property Type="Boolean" Name="Error" Nullable="false" />
+    <Property Type="Boolean" Name="Checked" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Word">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="SpeechPartID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="GenderID" />
+    <Property Type="Int32" Name="AnimateID" />
+    <Property Type="Int32" Name="TypeID" />
+    <NavigationProperty Name="Animate" Relationship="CyrillerModel.FK_Words_Animates" FromRole="Word" ToRole="Animate" />
+    <NavigationProperty Name="Gender" Relationship="CyrillerModel.FK_Words_Genders" FromRole="Word" ToRole="Gender" />
+    <NavigationProperty Name="SpeechPart" Relationship="CyrillerModel.FK_Words_SpeechParts" FromRole="Word" ToRole="SpeechPart" />
+    <NavigationProperty Name="WordCases" Relationship="CyrillerModel.FK_WordCases_Words" FromRole="Word" ToRole="WordCas" />
+    <NavigationProperty Name="WordType" Relationship="CyrillerModel.FK_Words_WordTypes" FromRole="Word" ToRole="WordType" />
+    <Property Type="Boolean" Name="Error" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WordType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SysName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SpeechPartID" Nullable="false" />
+    <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+    <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Words" Relationship="CyrillerModel.FK_Words_WordTypes" FromRole="WordType" ToRole="Word" />
+  </EntityType>
+  <Association Name="FK_WordCases_Animates">
+    <End Type="CyrillerModel.Animate" Role="Animate" Multiplicity="0..1" />
+    <End Type="CyrillerModel.WordCase" Role="WordCas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCas">
+        <PropertyRef Name="AnimateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_Animates">
+    <End Type="CyrillerModel.Animate" Role="Animate" Multiplicity="0..1" />
+    <End Type="CyrillerModel.Word" Role="Word" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Word">
+        <PropertyRef Name="AnimateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Cases">
+    <End Type="CyrillerModel.Case" Role="Case" Multiplicity="1" />
+    <End Type="CyrillerModel.WordCase" Role="WordCas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCas">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_Genders">
+    <End Type="CyrillerModel.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="CyrillerModel.Word" Role="Word" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Word">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Numbers">
+    <End Type="CyrillerModel.Number" Role="Number" Multiplicity="1" />
+    <End Type="CyrillerModel.WordCase" Role="WordCas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Number">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCas">
+        <PropertyRef Name="NumberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_SpeechParts">
+    <End Type="CyrillerModel.SpeechPart" Role="SpeechPart" Multiplicity="1" />
+    <End Type="CyrillerModel.Word" Role="Word" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeechPart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Word">
+        <PropertyRef Name="SpeechPartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Words">
+    <End Type="CyrillerModel.Word" Role="Word" Multiplicity="1" />
+    <End Type="CyrillerModel.WordCase" Role="WordCas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Word">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCas">
+        <PropertyRef Name="WordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_WordTypes">
+    <End Type="CyrillerModel.WordType" Role="WordType" Multiplicity="0..1" />
+    <End Type="CyrillerModel.Word" Role="Word" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WordType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Word">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Genders">
+    <End Type="CyrillerModel.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="CyrillerModel.WordCase" Role="WordCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCase">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RawWord">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="LemmaID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SpeechPartID" />
+    <Property Type="String" Name="Xml" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SpeechPart" Relationship="CyrillerModel.FK_RawWords_SpeechParts" FromRole="RawWord" ToRole="SpeechPart" />
+  </EntityType>
+  <Association Name="FK_RawWords_SpeechParts">
+    <End Type="CyrillerModel.SpeechPart" Role="SpeechPart" Multiplicity="0..1" />
+    <End Type="CyrillerModel.RawWord" Role="RawWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeechPart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RawWord">
+        <PropertyRef Name="SpeechPartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

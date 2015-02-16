@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CyrillerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Animates">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SysName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Cases">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SysName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Genders">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SysName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Numbers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SysName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="RawWords">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LemmaID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="SpeechPartID" Type="int" />
+    <Property Name="Xml" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SpeechParts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SysName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="WordCases">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WordID" Type="int" Nullable="false" />
+    <Property Name="CaseID" Type="int" Nullable="false" />
+    <Property Name="NumberID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="AnimateID" Type="int" />
+    <Property Name="GenderID" Type="int" />
+    <Property Name="Error" Type="bit" Nullable="false" />
+    <Property Name="Checked" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Words">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpeechPartID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="GenderID" Type="int" />
+    <Property Name="AnimateID" Type="int" />
+    <Property Name="TypeID" Type="int" />
+    <Property Name="Error" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WordTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SysName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SpeechPartID" Type="int" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_RawWords_SpeechParts">
+    <End Role="SpeechParts" Type="Self.SpeechParts" Multiplicity="0..1" />
+    <End Role="RawWords" Type="Self.RawWords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeechParts">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RawWords">
+        <PropertyRef Name="SpeechPartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Animates">
+    <End Role="Animates" Type="Self.Animates" Multiplicity="0..1" />
+    <End Role="WordCases" Type="Self.WordCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animates">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCases">
+        <PropertyRef Name="AnimateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Cases">
+    <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
+    <End Role="WordCases" Type="Self.WordCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cases">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCases">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Genders">
+    <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+    <End Role="WordCases" Type="Self.WordCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genders">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCases">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Numbers">
+    <End Role="Numbers" Type="Self.Numbers" Multiplicity="1" />
+    <End Role="WordCases" Type="Self.WordCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Numbers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCases">
+        <PropertyRef Name="NumberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WordCases_Words">
+    <End Role="Words" Type="Self.Words" Multiplicity="1" />
+    <End Role="WordCases" Type="Self.WordCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Words">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WordCases">
+        <PropertyRef Name="WordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_Animates">
+    <End Role="Animates" Type="Self.Animates" Multiplicity="0..1" />
+    <End Role="Words" Type="Self.Words" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animates">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Words">
+        <PropertyRef Name="AnimateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_Genders">
+    <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+    <End Role="Words" Type="Self.Words" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genders">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Words">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_SpeechParts">
+    <End Role="SpeechParts" Type="Self.SpeechParts" Multiplicity="1" />
+    <End Role="Words" Type="Self.Words" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeechParts">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Words">
+        <PropertyRef Name="SpeechPartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Words_WordTypes">
+    <End Role="WordTypes" Type="Self.WordTypes" Multiplicity="0..1" />
+    <End Role="Words" Type="Self.Words" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WordTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Words">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="UpdateWordCases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WordID" Type="int" Mode="In" />
+    <Parameter Name="Case1" Type="nvarchar" Mode="In" />
+    <Parameter Name="Case2" Type="nvarchar" Mode="In" />
+    <Parameter Name="Case3" Type="nvarchar" Mode="In" />
+    <Parameter Name="Case4" Type="nvarchar" Mode="In" />
+    <Parameter Name="Case5" Type="nvarchar" Mode="In" />
+    <Parameter Name="Case6" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="CyrillerModelStoreContainer">
+    <EntitySet Name="Animates" EntityType="Self.Animates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Numbers" EntityType="Self.Numbers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RawWords" EntityType="Self.RawWords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpeechParts" EntityType="Self.SpeechParts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WordCases" EntityType="Self.WordCases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WordTypes" EntityType="Self.WordTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_RawWords_SpeechParts" Association="Self.FK_RawWords_SpeechParts">
+      <End Role="SpeechParts" EntitySet="SpeechParts" />
+      <End Role="RawWords" EntitySet="RawWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Animates" Association="Self.FK_WordCases_Animates">
+      <End Role="Animates" EntitySet="Animates" />
+      <End Role="WordCases" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Cases" Association="Self.FK_WordCases_Cases">
+      <End Role="Cases" EntitySet="Cases" />
+      <End Role="WordCases" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Genders" Association="Self.FK_WordCases_Genders">
+      <End Role="Genders" EntitySet="Genders" />
+      <End Role="WordCases" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Numbers" Association="Self.FK_WordCases_Numbers">
+      <End Role="Numbers" EntitySet="Numbers" />
+      <End Role="WordCases" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WordCases_Words" Association="Self.FK_WordCases_Words">
+      <End Role="Words" EntitySet="Words" />
+      <End Role="WordCases" EntitySet="WordCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_Animates" Association="Self.FK_Words_Animates">
+      <End Role="Animates" EntitySet="Animates" />
+      <End Role="Words" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_Genders" Association="Self.FK_Words_Genders">
+      <End Role="Genders" EntitySet="Genders" />
+      <End Role="Words" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_SpeechParts" Association="Self.FK_Words_SpeechParts">
+      <End Role="SpeechParts" EntitySet="SpeechParts" />
+      <End Role="Words" EntitySet="Words" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Words_WordTypes" Association="Self.FK_Words_WordTypes">
+      <End Role="WordTypes" EntitySet="WordTypes" />
+      <End Role="Words" EntitySet="Words" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

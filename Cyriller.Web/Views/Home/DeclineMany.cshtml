@@ -1,0 +1,18 @@
+﻿@using Cyriller;
+@{
+    string text = ViewBag.Text;
+    string h = ViewBag.Title = "Склонять пачку слов по падежам";
+}
+<h1>@Html.Raw(h)</h1>
+<fieldset>
+    <legend></legend>
+    <form action="@Url.Content("~/DeclineMany")" method="post">
+        <div class="form-group">
+            <textarea class="form-control" name="w" placeholder="Введите несколько слов, по одному слову на строку" rows="15" maxlength="512" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <p class="p">Результат склонения будет выдан в виде .csv документа. Файл можно открыть в MS-Excel или блокноте.</p>
+        </div>
+        <button class="btn btn-primary" type="submit">Склонять</button>
+    </form>
+</fieldset>

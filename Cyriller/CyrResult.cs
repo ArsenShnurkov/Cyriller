@@ -40,6 +40,16 @@ namespace Cyriller
             this.case6 = Case6;
         }
 
+        public static CyrResult operator +(CyrResult A, CyrResult B)
+        {
+            return new CyrResult(A.case1 + " " + B.case1,
+                A.case2 + " " + B.case2,
+                A.case3 + " " + B.case3,
+                A.case4 + " " + B.case4,
+                A.case5 + " " + B.case5,
+                A.case6 + " " + B.case6);
+        }
+
         /// <summary>
         /// Именительный, Кто? Что? (есть)
         /// </summary>

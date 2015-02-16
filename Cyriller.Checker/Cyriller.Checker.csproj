@@ -55,17 +55,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelpForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="AboutForm.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HelpForm.Designer.cs">
-      <DependentUpon>HelpForm.cs</DependentUpon>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="AdjectiveForm.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="AdjectiveForm.Designer.cs">
+      <DependentUpon>AdjectiveForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Animate.cs">
       <DependentUpon>CyrillerModel.tt</DependentUpon>
@@ -109,13 +109,46 @@
     <Compile Include="Model\WordType.cs">
       <DependentUpon>CyrillerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NounForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NounForm.Designer.cs">
+      <DependentUpon>NounForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumberForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NumberForm.Designer.cs">
+      <DependentUpon>NumberForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhraseForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PhraseForm.Designer.cs">
+      <DependentUpon>PhraseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="HelpForm.resx">
-      <DependentUpon>HelpForm.cs</DependentUpon>
+    <Compile Include="StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="AdjectiveForm.resx">
+      <DependentUpon>AdjectiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NounForm.resx">
+      <DependentUpon>NounForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumberForm.resx">
+      <DependentUpon>NumberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhraseForm.resx">
+      <DependentUpon>PhraseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,6 +160,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model\CyrillerModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CyrillerModel.Designer.cs</LastGenOutput>

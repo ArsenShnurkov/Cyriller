@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using System.Text;
+using Cyriller.Model;
 
 namespace Cyriller.Web.Controllers
 {
@@ -17,45 +19,9 @@ namespace Cyriller.Web.Controllers
             return View();
         }
 
-        [GzipFilter]
-        public ActionResult Decline(string w)
+        public ActionResult Decline()
         {
-            ViewBag.Page = "Home.Decline";
-
-            if (string.IsNullOrEmpty(w))
-            {
-                return View();
-            }
-
-            List<string> errors = new List<string>();
-            List<CyrWord> words = new List<CyrWord>();
-            List<CyrResult> results = new List<CyrResult>();
-            CyrCollection collection = new CyrCollection();
-
-            foreach (string s in w.Split(' ').Where(val => !string.IsNullOrEmpty(val)))
-            {
-                CyrWord word;
-
-                try
-                {
-                    word = collection.Get(s);
-                }
-                catch (CyrWordNotFoundException)
-                {
-                    errors.Add(string.Format("Слово \"<strong>{0}</strong>\" не найдено в коллекции. Попбробуйте другое слово.", s));
-                    continue;
-                }
-
-                words.Add(word);
-                results.Add(word.Decline());
-            }
-
-            ViewBag.Text = w;
-            ViewBag.Errors = errors;
-            ViewBag.Words = words;
-            ViewBag.Results = results;
-
-            return View();
+            return new RedirectResult("~/Decline/Phrase", true);
         }
 
         [GzipFilter]
@@ -97,6 +63,14 @@ namespace Cyriller.Web.Controllers
         public ActionResult Thanks()
         {
             ViewBag.Page = "Home.Thanks";
+
+            return View();
+        }
+
+        [GzipFilter]
+        public ActionResult News()
+        {
+            ViewBag.Page = "Home.News";
 
             return View();
         }

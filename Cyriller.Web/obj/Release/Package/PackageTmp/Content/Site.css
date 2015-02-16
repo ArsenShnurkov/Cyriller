@@ -1,0 +1,201 @@
+﻿html,
+body
+{
+    padding:0px;
+    margin:0px;
+    background-color:white;
+    font-family:Consolas;
+    font-size:15px;
+    min-height:100%;
+    height:100%;
+}
+
+h1
+{
+    font-size:28px;
+}
+
+#body
+{
+    width:900px;
+    margin:auto;
+    padding-bottom:48px;
+    min-height:100%;
+    position:relative;
+}
+
+#logo
+{
+    display:block;
+    float:left;
+    width:38px;
+    height:38px;
+    background-image:url(images/logo-small.png);
+    background-position: center center;
+    background-repeat:no-repeat;
+    margin: 1px;
+}
+
+#menu
+{
+    background-color:#303030;
+    height:40px;
+    padding-left:40px;
+}
+
+#menu ul,
+#footer ul
+{
+    list-style-type:none;
+    display:block;
+    padding:0px;
+    margin:0px;
+}
+
+#menu ul li,
+#footer ul li
+{
+    float:left;
+}
+
+#menu ul li a,
+#footer ul li a
+{
+    display:block;
+    color:white;
+    line-height:40px;
+    padding:0px 20px;
+    text-decoration:none;
+}
+
+#menu ul li a:hover
+{
+    background-color:#666666;
+}
+
+#menu ul li.active a
+{
+    background-color:#555555;
+}
+
+#footer
+{
+    margin-top:30px;
+    background-color:#333333;
+    color:#C0C0C0;
+    font-size:12px;
+    padding:10px;
+    overflow:auto;
+    position:absolute;
+    width:900px;
+    bottom:10px;
+    left:50%;
+    margin-left:-450px;
+    height:38px;
+}
+
+#footer ul li a
+{
+    line-height:18px;
+    padding:0px;
+    margin-right:15px;
+    color:#C0C0C0;
+}
+
+#footer ul li a:hover
+{
+    color:gray;
+}
+
+#counters
+{
+    float:right;
+    margin-left:10px;
+}
+
+p.p
+{
+    text-align:justify;
+}
+
+p.p-small
+{
+    font-size:12px;
+    color:#666666;
+}
+
+form.decline-form
+{
+    padding-bottom:20px;
+    border-bottom:1px solid #e5e5e5;
+    margin-bottom:20px;
+}
+
+form.decline-form input
+{
+    width:800px;
+    display:inline-block;
+}
+
+.h-word
+{
+    font-size:18px;
+    margin:0px 0px 15px 0px;
+}
+
+.h-word .gender,
+.h-word .animate,
+.h-word .type
+{
+    font-size:14px;
+    color:darkred;
+    font-style:italic;
+}
+
+.h-word .animate
+{
+    color:darkgreen;
+}
+
+.h-word .type
+{
+    color:darkblue;
+}
+
+.table-cases
+{
+    font-size:110%;
+    margin-bottom:40px;
+}
+
+.table-cases .td-case
+{
+    width:350px;
+}
+
+.table-download
+{
+    margin:30px 0px;
+}
+
+.table-download tbody tr th
+{
+    vertical-align:middle;
+    font-weight:normal;
+    width:50%;
+}
+
+.table-download tbody tr td .btn
+{
+    width:180px;
+}
+
+.table-contacts tbody tr td
+{
+    vertical-align:middle;
+}
+
+.table-contacts tbody tr td .btn
+{
+    width:250px;
+}

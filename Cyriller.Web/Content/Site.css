@@ -68,7 +68,8 @@ h1
     text-decoration:none;
 }
 
-#menu ul li a:hover
+#menu ul li a:hover,
+#menu ul li.active ul.submenu a:hover
 {
     background-color:#666666;
 }
@@ -76,6 +77,30 @@ h1
 #menu ul li.active a
 {
     background-color:#555555;
+}
+
+#menu ul li ul.submenu
+{
+    position:absolute;
+    background-color:#303030;
+    z-index:1;
+    padding-bottom:10px;
+    display:none;
+}
+
+#menu ul li.active ul.submenu a
+{
+    background-color:transparent;
+}
+
+#menu ul li ul.submenu li
+{
+    float:none;
+}
+
+#menu ul li:hover ul.submenu
+{
+    display:block;
 }
 
 #footer
@@ -129,12 +154,13 @@ form.decline-form
     padding-bottom:20px;
     border-bottom:1px solid #e5e5e5;
     margin-bottom:20px;
+    overflow:auto;
 }
 
-form.decline-form input
+form.decline-form .control-label
 {
-    width:800px;
-    display:inline-block;
+    padding-left:0px;
+    padding-right:0px;
 }
 
 .h-word
@@ -198,4 +224,38 @@ form.decline-form input
 .table-contacts tbody tr td .btn
 {
     width:250px;
+}
+
+.news
+{
+}
+
+.news .news-item
+{
+    padding-bottom:25px;
+    margin-bottom:25px;
+    border-bottom:1px solid #C0C0C0;
+}
+
+.news .news-date,
+.news .news-title
+{
+    font-weight:bold;
+    font-size:120%;
+}
+
+.news .news-date
+{
+    float:right;
+    margin-top:-5px;
+}
+
+.news .news-title
+{
+
+}
+
+.news .news-body
+{
+    text-align:justify;
 }
