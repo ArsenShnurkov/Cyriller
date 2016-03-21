@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller", "Cyriller\Cyriller.csproj", "{18887BCA-64CF-4FD0-84F5-3003B3003640}"
 EndProject
@@ -15,6 +15,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller.Checker", "Cyriller.Checker\Cyriller.Checker.csproj", "{A08715C4-9E57-40E1-857D-EFCE250FED54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller.Web", "Cyriller.Web\Cyriller.Web.csproj", "{B4EE6BD2-7870-4875-A3B1-E128CD229BD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F2AE49F-F3DD-40B5-9E14-D6AB102F1D91}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
