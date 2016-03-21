@@ -53,5 +53,10 @@ namespace Cyriller.Checker
         {
             OpenForm(new PhraseForm());
         }
+
+        private void msiZipDictionary_Click(object sender, EventArgs e)
+        {
+            OpenForm(new ZipForm());
+        }
     }
 }

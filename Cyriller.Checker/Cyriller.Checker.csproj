@@ -135,6 +135,12 @@
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZipForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ZipForm.Designer.cs">
+      <DependentUpon>ZipForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +168,9 @@
     </Compile>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZipForm.resx">
+      <DependentUpon>ZipForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model\CyrillerModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
