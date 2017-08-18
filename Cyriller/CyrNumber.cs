@@ -173,7 +173,7 @@ namespace Cyriller
                     v = string.Join(string.Empty, chars.ToArray());
                 }
 
-                long d = (long)Math.Round(decimal.Parse(v), 0);
+                long d = (long)Math.Round(decimal.Parse(v, System.Globalization.CultureInfo.InvariantCulture.NumberFormat), 0);
 
                 sb.Append(" и ");
                 sb.Append(this.ToString(d, Case, Currency.DecimalGender, AnimatesEnum.Inanimated));
