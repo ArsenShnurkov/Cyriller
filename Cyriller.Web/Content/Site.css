@@ -141,11 +141,12 @@ h1
 #share-buttons
 {
     text-align: center;
+    overflow: hidden;
 }
 
 #share-buttons img
 {
-    width: 20px;
+    width: 18px;
     border: 0;
     box-shadow: 0;
     display: inline;
