@@ -138,6 +138,24 @@ h1
     margin-left:10px;
 }
 
+#share-buttons
+{
+    text-align: center;
+}
+
+#share-buttons img
+{
+    width: 20px;
+    border: 0;
+    box-shadow: 0;
+    display: inline;
+}
+
+#share-buttons a
+{
+    text-decoration: none;
+}
+
 p.p
 {
     text-align:justify;

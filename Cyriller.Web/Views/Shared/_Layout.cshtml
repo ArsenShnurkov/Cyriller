@@ -125,19 +125,29 @@
                         <a href="@Url.Content("~/Decline/Phrase")">Склонять</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Decline/Number")">Число прописью</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Content("~/Download")">Скачать</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Content("~/News")">Новости</a>
-                    </li>
-                    <li>
                         <a href="@Url.Content("~/Contacts")">Контакты</a>
                     </li>
                 </ul>
             </nav>
+            <div>
+                <div id="share-buttons">
+                    <a href="http://www.facebook.com/sharer.php?u=@Request.Url" target="_blank" title="Поделиться в Facebook">
+                        <img src="@Url.Content("~/Content/images/facebook.png")" alt="Facebook" />
+                    </a>
+                    <a href="https://plus.google.com/share?url=@Request.Url" target="_blank" title="Поделиться в Google Plus">
+                        <img src="@Url.Content("~/Content/images/google.png")" alt="Google" />
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url" target="_blank" title="Поделиться в LinkedIn">
+                        <img src="@Url.Content("~/Content/images/linkedin.png")" alt="LinkedIn" />
+                    </a>
+                    <a href="https://twitter.com/share?url=@Request.Url&amp;text=@ViewBag.Title&amp;hashtags=Cyriller" target="_blank" title="Поделиться через Twitter">
+                        <img src="@Url.Content("~/Content/images/twitter.png")" alt="Twitter" />
+                    </a>
+                    <a href="http://vkontakte.ru/share.php?url=@Request.Url" target="_blank" title="Поделиться через ВК">
+                        <img src="@Url.Content("~/Content/images/vk.png")" alt="VK" />
+                    </a>
+                </div>
+            </div>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")

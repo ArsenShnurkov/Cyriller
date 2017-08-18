@@ -132,7 +132,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\google.png" />
+    <Content Include="Content\images\linkedin.png" />
     <Content Include="Content\images\logo-small.png" />
+    <Content Include="Content\images\twitter.png" />
+    <Content Include="Content\images\vk.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
