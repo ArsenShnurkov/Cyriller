@@ -9,12 +9,12 @@ namespace Cyriller
 {
     public class CyrPhrase
     {
-        protected CyrNounCollection nouCollection;
+        protected CyrNounCollection nounCollection;
         protected CyrAdjectiveCollection adjCollection;
 
-        public CyrPhrase(CyrNounCollection NouCollection, CyrAdjectiveCollection AdjCollection)
+        public CyrPhrase(CyrNounCollection NounCollection, CyrAdjectiveCollection AdjCollection)
         {
-            this.nouCollection = NouCollection;
+            this.nounCollection = NounCollection;
             this.adjCollection = AdjCollection;
         }
 
@@ -62,7 +62,7 @@ namespace Cyriller
                         words.Add(adj);
                         break;
                     case SpeechPartsEnum.Noun:
-                        CyrNoun noun = this.nouCollection.Get(w, Condition);
+                        CyrNoun noun = this.nounCollection.Get(w, Condition);
                         words.Add(noun);
                         break;
                     default:
