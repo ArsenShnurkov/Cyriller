@@ -41,6 +41,7 @@
     <Compile Include="CyrAdjective.cs" />
     <Compile Include="CyrAdjectiveCollection.cs" />
     <Compile Include="CyrData.cs" />
+    <Compile Include="CyrDeclineCase.cs" />
     <Compile Include="CyrNoun.cs" />
     <Compile Include="CyrNumber.cs" />
     <Compile Include="CyrNumber.Currency.cs" />

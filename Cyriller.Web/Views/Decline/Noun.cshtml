@@ -86,72 +86,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        Именительный, <span class="label label-default">Кто? Что? (есть)</span>
-                    </td>
-                    <td>
-                        @singular[1]
-                    </td>
-                    <td>
-                        @plural[1]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Родительный, <span class="label label-default">Кого? Чего? (нет)</span>
-                    </td>
-                    <td>
-                        @singular[2]
-                    </td>
-                    <td>
-                        @plural[2]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Дательный, <span class="label label-default">Кому? Чему? (дам)</span>
-                    </td>
-                    <td>
-                        @singular[3]
-                    </td>
-                    <td>
-                        @plural[3]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Винительный, <span class="label label-default">Кого? Что? (вижу)</span>
-                    </td>
-                    <td>
-                        @singular[4]
-                    </td>
-                    <td>
-                        @plural[4]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Творительный, <span class="label label-default">Кем? Чем? (горжусь)</span>
-                    </td>
-                    <td>
-                        @singular[5]
-                    </td>
-                    <td>
-                        @plural[5]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Предложный, <span class="label label-default">О ком? О чем? (думаю)</span>
-                    </td>
-                    <td>
-                        @singular[6]
-                    </td>
-                    <td>
-                        @plural[6]
-                    </td>
-                </tr>
+                @foreach (CyrDeclineCase dc in ViewBag.Cases)
+                {
+                    <tr>
+                        <td>
+                            @dc.NameRu, <span class="label label-default">@dc.Description</span>
+                        </td>
+                        <td>
+                            @singular[dc.Index]
+                        </td>
+                        <td>
+                            @plural[dc.Index]
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     }

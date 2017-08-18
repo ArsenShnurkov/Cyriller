@@ -49,6 +49,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Words = words;
             ViewBag.Singulars = singulars;
             ViewBag.Plurals = plurals;
+            ViewBag.Cases = CyrDeclineCase.List;
 
             return View();
         }
@@ -93,6 +94,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Words = words;
             ViewBag.Singulars = singulars;
             ViewBag.Plurals = plurals;
+            ViewBag.Cases = CyrDeclineCase.List;
 
             return View();
         }
@@ -127,6 +129,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Errors = errors;
             ViewBag.Singular = singular;
             ViewBag.Plural = plural;
+            ViewBag.Cases = CyrDeclineCase.List;
 
             return View();
         }
@@ -222,6 +225,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Action = a;
             ViewBag.Result = result;
             ViewBag.Errors = errors;
+            ViewBag.Cases = CyrDeclineCase.List;
 
             return View();
         }
