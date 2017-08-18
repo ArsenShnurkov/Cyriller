@@ -1,0 +1,83 @@
+﻿@using Cyriller;
+@{
+    string text = ViewBag.Text;
+    string h = ViewBag.Title = "Склонять текстовый или excel файл по падежам";
+}
+<h1>@Html.Raw(h)</h1>
+@if (ViewBag.Errors != null)
+{
+    foreach (string error in ViewBag.Errors)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(error)
+        </div>
+    }
+}
+<fieldset>
+    <legend></legend>
+    <form method="post" class="decline-form form-horizontal" enctype="multipart/form-data">
+        <input type="hidden" name="Upload" value="True" />
+        <div class="form-group">
+            <label class="control-label col-xs-5">Файл для склонения (<code>.txt</code> или <code>.xlsx</code>):</label>
+            <div class="col-xs-7">
+                <input type="file" name="w" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-5">Отобразить результат в:</label>
+            <div class="col-xs-7">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="Plural" value="False" @(true.Equals(ViewBag.Plural) ? string.Empty : "checked") />
+                        <span>Единственном числе</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="Plural" value="True" @(true.Equals(ViewBag.Plural) ? "checked" : string.Empty) />
+                        <span>Множественном числе</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-5"></label>
+            <div class="col-xs-7">
+                <button class="btn btn-primary" type="submit">Загрузить</button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+@if (ViewBag.DownloadFileName != null)
+{
+    <div class="alert alert-success">
+        Склонирование файла <b>@ViewBag.OriginalFileName</b> успешно завершено. 
+        <br />
+        <small>
+            - Всего слов/фраз - <b>@ViewBag.TotalPhrases</b>.
+            <br />
+            - Из них с ошибками - <b>@ViewBag.ErrorPhrases</b>.
+        </small>
+        <br />
+        Результат доступен для скачивания по ссылке - <b><a href="@Url.Content("~/Temp/" + ViewBag.DownloadFileName)" target="_blank" rel="nofollow">@ViewBag.DownloadFileName</a></b>
+    </div>
+    <p>
+        <small>
+            Понравился сервис - поддержи развитие.
+            <br />
+            Нужно склонять много больших файлов - напиши мне.
+        </small>
+    </p>
+}
+else
+{
+    <p>
+        <small>
+            Максимальный размер файла - 500 килобайт.
+            <br />
+            <b>.txt</b> - по одному слову или фразе на строку, без пустых строк.
+            <br />
+            <b>.xlsx</b> - по одному слову или фразе в ячейке, без пустых ячеек. Первая строка - <code>1</code>, столбец - <code>A</code>.
+        </small>
+    </p>
+}

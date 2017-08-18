@@ -1,0 +1,58 @@
+﻿@using Cyriller;
+@{
+    string text = ViewBag.Text;
+    string h = ViewBag.Title = "Склонять много фраз по падежам";
+}
+<h1>@Html.Raw(h)</h1>
+@if (ViewBag.Errors != null)
+{
+    foreach (string error in ViewBag.Errors)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(error)
+        </div>
+    }
+}
+<fieldset>
+    <legend></legend>
+    <form method="post" class="decline-form">
+        <p>
+            <textarea name="w" class="form-control" required="required" placeholder="Введите фразы в именительном падеже, по одной на строку">@text</textarea>
+        </p>
+        <p class="text-center">
+            <button class="btn btn-primary" type="submit">Склонять</button>
+        </p>
+    </form>
+</fieldset>
+@if (ViewBag.Singulars != null && ViewBag.Plurals != null)
+{
+    List<CyrResult> singulars = ViewBag.Singulars;
+    List<CyrResult> plurals = ViewBag.Plurals;
+    CyrDeclineCase[] cases = ViewBag.Cases;
+
+    <table class="table table-bordered table-cases">
+        <thead>
+            <tr>
+                <th class="td-case">Падеж</th>
+                <th class="td-value">Единственное число</th>
+                <th class="td-value">Множественное число</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CyrDeclineCase dc in cases)
+            {
+                <tr>
+                    <td>
+                        @dc.NameRu, <span class="label label-default">@dc.Description</span>
+                    </td>
+                    <td>
+                        <pre>@string.Join(Environment.NewLine, singulars.Select(x => x[dc.Index]).ToArray())</pre>
+                    </td>
+                    <td>
+                        <pre>@string.Join(Environment.NewLine, plurals.Select(x => x[dc.Index]).ToArray())</pre>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

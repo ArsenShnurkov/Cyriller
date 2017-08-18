@@ -163,6 +163,17 @@ form.decline-form .control-label
     padding-right:0px;
 }
 
+form.decline-form textarea.form-control
+{
+    height: 200px;
+}
+
+form.decline-form.form-horizontal .form-group
+{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 .h-word
 {
     font-size:18px;
