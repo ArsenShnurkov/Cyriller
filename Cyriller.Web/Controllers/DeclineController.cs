@@ -435,7 +435,7 @@ namespace Cyriller.Web.Controllers
             CyrDeclineCase[] cases = CyrDeclineCase.List;
             CyrPhrase phrase = new CyrPhrase(NounCollection, AdjectiveCollection);
 
-            TextReader reader = new StreamReader(File.InputStream);
+            TextReader reader = new StreamReader(File.InputStream, true);
             TextWriter writer = new StreamWriter(path, false, System.Text.Encoding.UTF8);
             string line = reader.ReadLine();
             int totalPhrases = 0;

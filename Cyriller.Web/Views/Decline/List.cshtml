@@ -46,10 +46,10 @@
                         @dc.NameRu, <span class="label label-default">@dc.Description</span>
                     </td>
                     <td>
-                        <pre>@string.Join(Environment.NewLine, singulars.Select(x => x[dc.Index]).ToArray())</pre>
+                        <pre>@string.Join(Environment.NewLine, singulars.Select(x => x[dc.Index].IsNullOrEmpty() ? "--" : x[dc.Index]).ToArray())</pre>
                     </td>
                     <td>
-                        <pre>@string.Join(Environment.NewLine, plurals.Select(x => x[dc.Index]).ToArray())</pre>
+                        <pre>@string.Join(Environment.NewLine, plurals.Select(x => x[dc.Index].IsNullOrEmpty() ? "--" : x[dc.Index]).ToArray())</pre>
                     </td>
                 </tr>
             }
