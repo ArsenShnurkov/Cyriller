@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
+using System.Collections.Concurrent;
 
 namespace Cyriller
 {
@@ -38,7 +39,7 @@ namespace Cyriller
                 return Word;
             }
 
-            Dictionary<string, int> keys = new Dictionary<string, int>();
+            ConcurrentDictionary<string, int> keys = new ConcurrentDictionary<string, int>();
 
             /*foreach (string s in words.Keys)
             {
@@ -52,7 +53,7 @@ namespace Cyriller
             {
                 if (s.EndsWith(Word))
                 {
-                    keys.Add(s, s.Length);
+                    keys.TryAdd(s, s.Length);
                 }
             });
 
