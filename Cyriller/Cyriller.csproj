@@ -37,7 +37,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\adjective-rules.txt" />
+    <None Include="App_Data\adjective-rules.txt" />
     <Compile Include="CyrAdjective.cs" />
     <Compile Include="CyrAdjectiveCollection.cs" />
     <Compile Include="CyrData.cs" />
@@ -67,7 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Content Include="App_Data\adjectives.txt" />
+    <None Include="App_Data\adjectives.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_Data\noun-rules.gz" />
