@@ -30,7 +30,7 @@ namespace Cyriller.Web.Controllers
             List<CyrResult> plurals = new List<CyrResult>();
             CyrNounCollection collection = this.NounCollection;
 
-            foreach (string s in w.Split(' ').Where(val => !string.IsNullOrEmpty(val)))
+            foreach (string s in w.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 CyrNoun word;
 
