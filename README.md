@@ -21,3 +21,7 @@ Cyriller - бесплатная программа склонения по па�
 ### Демо
 
 Cyriller можно протестировать онлайн - [http://cyriller.2try.ws/](http://cyriller.2try.ws/).
+
+### NuGet пакет
+
+https://www.nuget.org/packages/Miyconst.Cyriller
