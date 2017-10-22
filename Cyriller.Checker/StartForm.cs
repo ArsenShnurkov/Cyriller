@@ -58,5 +58,10 @@ namespace Cyriller.Checker
         {
             OpenForm(new ZipForm());
         }
+
+        private void msiRuleNoun_Click(object sender, EventArgs e)
+        {
+            OpenForm(new NounRuleForm());
+        }
     }
 }
