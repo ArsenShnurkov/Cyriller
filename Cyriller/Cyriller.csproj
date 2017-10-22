@@ -74,7 +74,6 @@
     <EmbeddedResource Include="App_Data\nouns.gz" />
     <EmbeddedResource Include="App_Data\adjective-rules.gz" />
     <EmbeddedResource Include="App_Data\adjectives.gz" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
