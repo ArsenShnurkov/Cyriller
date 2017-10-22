@@ -112,7 +112,7 @@ namespace Cyriller
             int typeID = int.Parse(parts[2]);
             int ruleID = int.Parse(parts[3]);
             
-            parts = this.rules[ruleID].Split(',');
+            parts = this.rules[ruleID].Split(new char[] { ',', '|' });
 
             CyrRule[] rules = parts.Select(val => new CyrRule(val)).ToArray();
             CyrNoun noun = new CyrNoun(Word, t, (GendersEnum)genderID, (AnimatesEnum)animateID, (WordTypesEnum)typeID, rules);
