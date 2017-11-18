@@ -12,7 +12,7 @@ namespace Cyriller
     public class CyrNounCollection
     {
         protected Dictionary<int, string> rules = new Dictionary<int, string>();
-        protected Dictionary<string, string> words = new Dictionary<string, string>();
+        protected Dictionary<string, List<string>> words = new Dictionary<string, List<string>>();
 
         public CyrNounCollection()
         {
@@ -40,8 +40,10 @@ namespace Cyriller
 
                 if (!words.ContainsKey(parts[0]))
                 {
-                    words.Add(parts[0], parts[1]);
+                    words.Add(parts[0], new List<string>());
                 }
+
+                words[parts[0]].Add(parts[1]);
 
                 line = treader.ReadLine();
             }
@@ -54,24 +56,24 @@ namespace Cyriller
             return this.Get(Word, GetConditionsEnum.Strict);
         }
 
-        public CyrNoun Get(string Word, GetConditionsEnum Condition)
+        public CyrNoun Get(string Word, GetConditionsEnum Condition, GendersEnum? GenderID = null, AnimatesEnum? AnimateID = null, WordTypesEnum? TypeID = null)
         {
             string t = Word;
-            string details = this.GetDetails(t);
+            List<string> list = this.GetDetails(t);
 
-            if (details.IsNullOrEmpty())
+            if (list == null || !list.Any())
             {
                 t = Word.ToLower();
-                details = this.GetDetails(t);
+                list = this.GetDetails(t);
             }
 
-            if (details.IsNullOrEmpty())
+            if (list == null || !list.Any())
             {
                 t = Word.ToLower().UppercaseFirst();
-                details = this.GetDetails(t);
+                list = this.GetDetails(t);
             }
 
-            if (details.IsNullOrEmpty())
+            if (list == null || !list.Any())
             {
                 List<int> indexes = new List<int>();
                 string lower = Word.ToLower();
@@ -87,40 +89,64 @@ namespace Cyriller
                 foreach (int index in indexes)
                 {
                     t = lower.Substring(0, index) + "ё" + lower.Substring(index + 1);
-                    details = this.GetDetails(t);
+                    list = this.GetDetails(t);
 
-                    if (details.IsNotNullOrEmpty())
+                    if (list != null && list.Any())
                     {
                         break;
                     }
                 }
             }
 
-            if (details.IsNullOrEmpty() && Condition == GetConditionsEnum.Similar)
+            if ((list == null || !list.Any()) && Condition == GetConditionsEnum.Similar)
             {
-                details = this.GetSimilarDetails(Word, out t);
+                list = this.GetSimilarDetails(Word, out t);
             }
 
-            if (details.IsNullOrEmpty())
+            if (list == null || !list.Any())
             {
                 throw new CyrWordNotFoundException(Word);
             }
 
-            string[] parts = details.Split(',');
-            int genderID = int.Parse(parts[0]);
-            int animateID = int.Parse(parts[1]);
-            int typeID = int.Parse(parts[2]);
-            int ruleID = int.Parse(parts[3]);
-            
-            parts = this.rules[ruleID].Split(new char[] { ',', '|' });
+            IEnumerable<CyrNounCollectionRow> rows = list.Select(x => CyrNounCollectionRow.Parse(x));
+            IEnumerable<CyrNounCollectionRow> filter = rows;
+
+            if (GenderID.HasValue)
+            {
+                filter = filter.Where(x => x.GenderID == (int)GenderID);
+            }
+
+            if (AnimateID.HasValue)
+            {
+                filter = filter.Where(x => x.AnimateID == (int)AnimateID);
+            }
+
+            if (TypeID.HasValue)
+            {
+                filter = filter.Where(x => x.TypeID == (int)TypeID);
+            }
+
+            CyrNounCollectionRow row = filter.FirstOrDefault();
+
+            if (row == null && Condition == GetConditionsEnum.Similar)
+            {
+                row = rows.FirstOrDefault();
+            }
+
+            if (row == null)
+            {
+                throw new CyrWordNotFoundException(Word);
+            }
+
+            string[] parts = this.rules[row.RuleID].Split(new char[] { ',', '|' });
 
             CyrRule[] rules = parts.Select(val => new CyrRule(val)).ToArray();
-            CyrNoun noun = new CyrNoun(Word, t, (GendersEnum)genderID, (AnimatesEnum)animateID, (WordTypesEnum)typeID, rules);
+            CyrNoun noun = new CyrNoun(Word, t, (GendersEnum)row.GenderID, (AnimatesEnum)row.AnimateID, (WordTypesEnum)row.TypeID, rules);
 
             return noun;
         }
 
-        protected string GetSimilarDetails(string Word, out string CollectionWord)
+        protected List<string> GetSimilarDetails(string Word, out string CollectionWord)
         {
             CyrData data = new CyrData();
             
@@ -134,7 +160,7 @@ namespace Cyriller
             return this.GetDetails(CollectionWord);
         }
 
-        protected string GetDetails(string Word)
+        protected List<string> GetDetails(string Word)
         {
             if (Word.IsNullOrEmpty())
             {

@@ -43,6 +43,7 @@
     <Compile Include="CyrData.cs" />
     <Compile Include="CyrDeclineCase.cs" />
     <Compile Include="CyrNoun.cs" />
+    <Compile Include="CyrNounCollectionRow.cs" />
     <Compile Include="CyrNumber.cs" />
     <Compile Include="CyrNumber.Currency.cs" />
     <Compile Include="CyrNumber.Item.cs" />
