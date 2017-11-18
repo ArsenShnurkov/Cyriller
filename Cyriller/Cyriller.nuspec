@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Miyconst.Cyriller</id>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <title>$title$</title>
     <authors>Konstantin Mi</authors>
     <owners>Konstantin Mi</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/miyconst/Cyriller/master/Cyriller.Web/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Russian language declension library</description>
-    <releaseNotes>First release.</releaseNotes>
+    <releaseNotes>Fix declension of hyphenated words and some noun declension rules.</releaseNotes>
     <copyright>Copyright 2014-2017</copyright>
     <tags>склонение существительное прилагательное число падежам</tags>
   </metadata>
