@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bfeb7842e54c439e806f8ab807899c9c" Name="Diagram1">
+        <EntityTypeShape EntityType="CyrillerModel.AdjectiveDictionary" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.AdjectiveRule" Width="1.5" PointX="5.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.Animate" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.Case" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.Gender" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.NounDictionary" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.NounRule" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.Number" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.RawWord" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.SpeechPart" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.WordCase" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.Word" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyrillerModel.WordType" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="CyrillerModel.FK_WordCases_Animates" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_Words_Animates" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_WordCases_Cases" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_WordCases_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_Words_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_WordDictionaries_Words" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_WordCases_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_RawWords_SpeechParts" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_Words_SpeechParts" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_WordCases_Words" ManuallyRouted="false" />
+        <AssociationConnector Association="CyrillerModel.FK_Words_WordTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
