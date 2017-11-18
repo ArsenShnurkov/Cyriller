@@ -24,8 +24,6 @@ namespace Cyriller
             return treader;
         }
 
-
-
         /// <summary>
         /// To do. Create a clever search algorithm.
         /// </summary>
