@@ -94,7 +94,7 @@ namespace Cyriller
         {
             string[] parts = this.name.Split(Hyphen[0]);
 
-            if (parts.Length == 1)
+            if (parts.Length == 1 || this.rules.Length <= 11)
             {
                 CyrResult result = new CyrResult(this.name,
                     this.rules[0].Apply(this.name),
