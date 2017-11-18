@@ -41,9 +41,9 @@
             this.msiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.msiDictionary = new System.Windows.Forms.ToolStripMenuItem();
             this.msiZipDictionary = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnlContainer = new System.Windows.Forms.Panel();
             this.msiRule = new System.Windows.Forms.ToolStripMenuItem();
             this.msiRuleNoun = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlContainer = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -151,14 +151,6 @@
             this.msiZipDictionary.Text = "Запаковать";
             this.msiZipDictionary.Click += new System.EventHandler(this.msiZipDictionary_Click);
             // 
-            // pnlContainer
-            // 
-            this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContainer.Location = new System.Drawing.Point(3, 33);
-            this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(978, 525);
-            this.pnlContainer.TabIndex = 1;
-            // 
             // msiRule
             // 
             this.msiRule.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -170,9 +162,17 @@
             // msiRuleNoun
             // 
             this.msiRuleNoun.Name = "msiRuleNoun";
-            this.msiRuleNoun.Size = new System.Drawing.Size(156, 22);
-            this.msiRuleNoun.Text = "Именительное";
+            this.msiRuleNoun.Size = new System.Drawing.Size(173, 22);
+            this.msiRuleNoun.Text = "Существительное";
             this.msiRuleNoun.Click += new System.EventHandler(this.msiRuleNoun_Click);
+            // 
+            // pnlContainer
+            // 
+            this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContainer.Location = new System.Drawing.Point(3, 33);
+            this.pnlContainer.Name = "pnlContainer";
+            this.pnlContainer.Size = new System.Drawing.Size(978, 525);
+            this.pnlContainer.TabIndex = 1;
             // 
             // StartForm
             // 
