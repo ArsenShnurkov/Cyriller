@@ -70,7 +70,7 @@ namespace Cyriller
         /// <param name="Condition">Вариант поиска в словаре</param>
         /// <param name="DefaultGender">Пол, в котором указано прилагательное, используется при поиске неточных совпадений</param>
         /// <returns></returns>
-        public CyrAdjective Get(string Word, GetConditionsEnum Condition, GendersEnum DefaultGender = 0)
+        public CyrAdjective Get(string Word, GetConditionsEnum Condition, GendersEnum DefaultGender = GendersEnum.Masculine)
         {
             GendersEnum gender = GendersEnum.Masculine;
             string t = Word;
