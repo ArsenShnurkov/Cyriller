@@ -93,7 +93,11 @@ namespace Cyriller
                 return foundWord;
             }
 
-            SimilarCandidate candidate = candidates.OrderByDescending(x => x.Weight).ThenBy(x => x.Name.Length).FirstOrDefault();
+            SimilarCandidate candidate = candidates
+                .OrderByDescending(x => x.Weight)
+                .ThenBy(x => x.Name.Length)
+                .ThenBy(x => x.Name)
+                .FirstOrDefault();
 
             return candidate?.Name;
         }
