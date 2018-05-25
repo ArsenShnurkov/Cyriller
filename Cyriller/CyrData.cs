@@ -66,9 +66,10 @@ namespace Cyriller
                 {
                     if (str[str.Length - i] == Word[Word.Length - i])
                     {
-                        weight += i < SameLetterWeights.Length ? SameLetterWeights[i] : 1;
+                        int wi = i - 1;
+                        weight += wi < SameLetterWeights.Length ? SameLetterWeights[wi] : 1;
                     }
-                    else if (i < MinSameLetters)
+                    else if (i <= MinSameLetters)
                     {
                         isSimilar = false;
                         break;
