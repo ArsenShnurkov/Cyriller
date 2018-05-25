@@ -59,7 +59,6 @@ namespace Cyriller
                 }
 
                 int maxPosition = Math.Min(Word.Length, str.Length);
-                bool isSimilar = true;
                 int weight = 0;
 
                 for (int i = 1; i <= maxPosition; i++)
@@ -71,21 +70,17 @@ namespace Cyriller
                     }
                     else if (i <= MinSameLetters)
                     {
-                        isSimilar = false;
-                        break;
+                        return;
                     }
                 }
 
-                if (isSimilar)
+                SimilarCandidate c = new SimilarCandidate()
                 {
-                    SimilarCandidate c = new SimilarCandidate()
-                    {
-                        Name = str,
-                        Weight = weight
-                    };
+                    Name = str,
+                    Weight = weight
+                };
 
-                    candidates.Add(c);
-                }
+                candidates.Add(c);
             });
 
             if (!string.IsNullOrEmpty(foundWord))
