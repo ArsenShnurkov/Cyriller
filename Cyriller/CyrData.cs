@@ -11,10 +11,11 @@ namespace Cyriller
 {
     internal class CyrData
     {
-        /// <summary>Минимальная длина слова</summary>
-        public const int MinDiffLength = 2;
-        /// <summary>Вес позиции от конца слова</summary>
-        private static readonly int[] WeightPositions = { 102400, 51200, 25600, 12800, 6400, 3200, 1600, 800, 400, 200 };
+        /// <summary>The minimum number of matching letters, from the right end, when searching for similar matches</summary>
+        public const int DefaultMinSameLetters = 2;
+
+        /// <summary>The weights of matching letters per position, from the right end</summary>
+        public static readonly int[] SameLetterWeights = { 1000, 100, 10 };
 
         public CyrData()
         {
@@ -29,82 +30,84 @@ namespace Cyriller
             return treader;
         }
 
-        /// <summary>Нахождение подходящего по окончанию слова в коллекции</summary>
-        /// <param name="word">Искомое слово</param>
-        /// <param name="collection">Список слов для поиска</param>
-        /// <param name="minWordLength">Минимальная длина слова, меньше которой нет смысла искать подходящие слова</param>
-        public string GetSimilar(string word, IEnumerable<string> collection, int minWordLength = MinDiffLength)
+        /// <summary>Search for similar words in the collection</summary>
+        /// <param name="Word">The word to search for</param>
+        /// <param name="Collection">The collection to look in</param>
+        /// <param name="MinSameLetters">The minimum number of matching letters, from the right end, min value - <see cref="DefaultMinSameLetters"/></param>
+        public string GetSimilar(string Word, IEnumerable<string> Collection, int MinSameLetters = DefaultMinSameLetters)
         {
-            if (minWordLength < MinDiffLength)
+            if (MinSameLetters < DefaultMinSameLetters)
             {
-                minWordLength = MinDiffLength;
+                throw new ArgumentOutOfRangeException($"{nameof(MinSameLetters)} value can not be smaller than {DefaultMinSameLetters}!");
             }
-            if (word == null || word.Length < minWordLength)
+
+            if (Word == null || Word.Length < MinSameLetters)
             {
-                return word;
+                return Word;
             }
 
             string foundWord = null;
-            int wordMaxPosition = word.Length - 1;
-            // SimilarWord => [lengthSimilarWord, similarWeight]
-            ConcurrentDictionary<string, int[]> keys = new ConcurrentDictionary<string, int[]>();
-            Parallel.ForEach(collection, (str, loopState) =>
+            ConcurrentBag<SimilarCandidate> candidates = new ConcurrentBag<SimilarCandidate>();
+
+            Parallel.ForEach(Collection, (str, loopState) =>
             {
-                if (str == word)
+                if (str == Word)
                 {
                     foundWord = str;
                     loopState.Stop();
+                    return;
                 }
-                else
+
+                int maxPosition = Math.Min(Word.Length, str.Length);
+                bool isSimilar = true;
+                int weight = 0;
+
+                for (int i = 1; i <= maxPosition; i++)
                 {
-                    int strMaxPosition = str.Length - 1;
-                    int maxPosition = Math.Min(wordMaxPosition, strMaxPosition);
-                    bool isSimilar = true;
-                    int similarWeight = 0;
-                    for (int i = 0; i <= maxPosition; i++)
+                    if (str[str.Length - i] == Word[Word.Length - i])
                     {
-                        if (str[strMaxPosition - i] == word[wordMaxPosition - i])
-                        {
-                            similarWeight += i < WeightPositions.Length ? WeightPositions[i] : 1;
-                        }
-                        else if (i < minWordLength)
-                        {
-                            isSimilar = false;
-                            break;
-                        }
+                        weight += i < SameLetterWeights.Length ? SameLetterWeights[i] : 1;
                     }
-                    if (isSimilar)
+                    else if (i < MinSameLetters)
                     {
-                        keys.TryAdd(str, new[] { str.Length, similarWeight });
+                        isSimilar = false;
+                        break;
                     }
+                }
+
+                if (isSimilar)
+                {
+                    SimilarCandidate c = new SimilarCandidate()
+                    {
+                        Name = str,
+                        Weight = weight
+                    };
+
+                    candidates.Add(c);
                 }
             });
 
-            if (!string.IsNullOrEmpty(foundWord) || !keys.Any())
+            if (!string.IsNullOrEmpty(foundWord))
             {
                 return foundWord;
             }
 
-            int valueWeight = 0;
-            int keyLength = 1000000;
-            foreach (var kv in keys)
-            {
-                var value = kv.Value;
-                var key = kv.Key;
-                if (value[1] < valueWeight || (value[1] == valueWeight && value[0] > keyLength))
-                {
-                    continue;
-                }
+            SimilarCandidate candidate = candidates.OrderByDescending(x => x.Weight).ThenBy(x => x.Name.Length).FirstOrDefault();
 
-                if (value[1] > valueWeight || value[0] < keyLength || key.CompareTo(foundWord) < 0)
-                {
-                    foundWord = key;
-                }
-                keyLength = value[0];
-                valueWeight = value[1];
-            }
+            return candidate?.Name;
+        }
 
-            return foundWord;
+        internal class SimilarCandidate
+        {
+            /// <summary>
+            /// Found similar word
+            /// </summary>
+            public string Name { get; set; }
+
+            /// <summary>
+            /// The weight of the matching letters, <see cref="SameLetterWeights"/>
+            /// </summary>
+            public int Weight { get; set; }
         }
     }
 }

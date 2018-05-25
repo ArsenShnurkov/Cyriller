@@ -14,8 +14,9 @@ namespace Cyriller
         protected Dictionary<string, string> masculineWords = new Dictionary<string, string>();
         protected Dictionary<string, KeyValuePair<string, string>> feminineWords = new Dictionary<string, KeyValuePair<string, string>>();
         protected Dictionary<string, KeyValuePair<string, string>> neuterWords = new Dictionary<string, KeyValuePair<string, string>>();
-        /// <summary>Минимальная длина слова с окончанием</summary>
-        protected int MinWordLength = 3;
+
+        /// <summary>The minimum number of matching letters, from the right end, when searching for similar matches, for adjectives</summary>
+        protected int AdjectiveMinSameLetters = 3;
 
         public CyrAdjectiveCollection()
         {
@@ -227,7 +228,7 @@ namespace Cyriller
         {
             CyrData data = new CyrData();
 
-            CollectionWord = data.GetSimilar(Word, Collection.Keys.ToList(), MinWordLength);
+            CollectionWord = data.GetSimilar(Word, Collection.Keys.ToList(), this.AdjectiveMinSameLetters);
 
             if (CollectionWord.IsNullOrEmpty())
             {
