@@ -89,7 +89,8 @@ namespace Cyriller
             }
 
             SimilarCandidate candidate = null;
-            foreach (var c in candidates)
+
+            foreach (SimilarCandidate c in candidates)
             {
                 if (candidate == null
                     || c.Weight > candidate.Weight
