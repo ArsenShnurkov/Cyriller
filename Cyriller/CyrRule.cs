@@ -52,7 +52,14 @@ namespace Cyriller
                 return string.Empty;
             }
 
-            return Name.Substring(0, Name.Length - cut) + end;
+            int length = Name.Length - cut;
+
+            if (length <= 0)
+            {
+                return this.end;
+            }
+
+            return Name.Substring(0, length) + end;
         }
     }
 }
