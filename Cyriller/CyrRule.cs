@@ -9,9 +9,26 @@ namespace Cyriller
 {
     public class CyrRule
     {
-        protected string end;
+        /// <summary>
+        /// Number of character to cut from the end of the word when applying this rule.
+        /// </summary>
         protected int cut;
 
+        /// <summary>
+        /// New word ending to append to the end of the word after <see cref="CyrRule.cut"/> characters is cut from the end.
+        /// </summary>
+        protected string end;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Rule">
+        /// String describing declension rule.
+        /// For example:
+        /// "ен2" - cut 2 characters from the end, then append "ен" at the end.
+        /// "ым" - do not cut any characters from the end, but append "ым" at the end.
+        /// "*" - the rule is not applicable, will always return <see cref="String.Empty"/> when applied with <see cref="CyrRule.Apply(string)"/>.
+        /// </param>
         public CyrRule(string Rule)
         {
             if (string.IsNullOrEmpty(Rule))
@@ -45,6 +62,11 @@ namespace Cyriller
             }
         }
 
+        /// <summary>
+        /// Applies declension rule on the specified word.
+        /// </summary>
+        /// <param name="Name">The word to apply declension to.</param>
+        /// <returns></returns>
         public string Apply(string Name)
         {
             if (this.end == "*")
