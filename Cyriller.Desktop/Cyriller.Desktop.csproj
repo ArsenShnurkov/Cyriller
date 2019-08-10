@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>Konstantin Mi (miyconst)</Authors>
+    <Company>http://www.miyconst.com/</Company>
+    <Description>Russian language declension library</Description>
+    <Copyright>Copyright © Konstantin Mi 2014-2019</Copyright>
+    <PackageProjectUrl>https://github.com/miyconst/Cyriller</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/miyconst/Cyriller/master/Cyriller.Web/favicon.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/miyconst/Cyriller</RepositoryUrl>
+    <PackageTags>склонение существительное прилагательное число падеж</PackageTags>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Views\AdjectiveView.xaml" />
+    <AvaloniaResource Remove="Views\NameView.xaml" />
+    <AvaloniaResource Remove="Views\NounView.xaml" />
+    <AvaloniaResource Remove="Views\NumberView.xaml" />
+    <AvaloniaResource Remove="Views\PhraseView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\AdjectiveView.xaml" />
+    <None Remove="Views\NameView.xaml" />
+    <None Remove="Views\NounView.xaml" />
+    <None Remove="Views\NumberView.xaml" />
+    <None Remove="Views\PhraseView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.8.1" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.8.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.1" />
+    <PackageReference Include="Dock.Avalonia.Editor" Version="0.8.0" />
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\NounView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AdjectiveView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\NameView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\NumberView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PhraseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cyriller.Model\Cyriller.Model.csproj" />
+    <ProjectReference Include="..\Cyriller.Rule\Cyriller.Rule.csproj" />
+    <ProjectReference Include="..\Cyriller\Cyriller.csproj" />
+  </ItemGroup>
+</Project>

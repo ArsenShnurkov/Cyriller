@@ -16,9 +16,9 @@ namespace Cyriller
             {
             }
 
-            public Strings(CasesEnum Case, GendersEnum Gender, AnimatesEnum Animate)
+            public Strings(CasesEnum @case, GendersEnum gender, AnimatesEnum animate)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         this.Hundreds = new string[] { "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот" };
@@ -29,7 +29,7 @@ namespace Cyriller
                         this.Billion = new string[] { "миллиард", "миллиарда", "миллиардов" };
                         this.Zero = "ноль";
 
-                        if (Gender == GendersEnum.Feminine)
+                        if (gender == GendersEnum.Feminine)
                         {
                             this.Integer = new string[] { "целая", "целые", "целых" };
                             this.DecimalTen = new string[] { "десятая", "десятые", "десятых" };
@@ -57,7 +57,7 @@ namespace Cyriller
                         this.Billion = new string[] { "миллиарда", "миллиардов", "миллиардов" };
                         this.Zero = "ноля";
 
-                        if (Gender == GendersEnum.Feminine)
+                        if (gender == GendersEnum.Feminine)
                         {
                             this.Integer = new string[] { "целой", "целыми", "целыми" };
                             this.DecimalTen = new string[] { "десятой", "десятых", "десятых" };
@@ -85,7 +85,7 @@ namespace Cyriller
                         this.Billion = new string[] { "миллиарду", "миллиардам", "миллиардам" };
                         this.Zero = "ноля";
 
-                        if (Gender == GendersEnum.Feminine)
+                        if (gender == GendersEnum.Feminine)
                         {
                             this.Integer = new string[] { "целой", "целым", "целым" };
                             this.DecimalTen = new string[] { "десятой", "десятым", "десятым" };
@@ -108,7 +108,7 @@ namespace Cyriller
                         this.Hundreds = new string[] { "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот" };
                         this.Tens = new string[] { "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто" };
 
-                        if (Animate == AnimatesEnum.Animated)
+                        if (animate == AnimatesEnum.Animated)
                         {
                             this.Numbers = new string[] { "одного", "двух", "трех", "четырех", "пять", "шести", "семи", "восьми", "девяти", "десяти", "одиннадцати", "двенадцати", "тринадцати", "четырнадцати", "пятнадцати", "шестнадцати", "семнадцати", "восемнадцати", "девятнадцати" };
                         }
@@ -122,7 +122,7 @@ namespace Cyriller
                         this.Billion = new string[] { "миллиард", "миллиарда", "миллиардов" };
                         this.Zero = "ноль";
 
-                        if (Gender == GendersEnum.Feminine)
+                        if (gender == GendersEnum.Feminine)
                         {
                             this.Integer = new string[] { "целую", "целые", "целых" };
                             this.DecimalTen = new string[] { "десятую", "десятых", "десятых" };
@@ -150,7 +150,7 @@ namespace Cyriller
                         this.Billion = new string[] { "миллиардом", "миллиардами", "миллиардами" };
                         this.Zero = "нолем";
 
-                        if (Gender == GendersEnum.Feminine)
+                        if (gender == GendersEnum.Feminine)
                         {
                             this.Integer = new string[] { "целой", "целыми", "целыми" };
                             this.DecimalTen = new string[] { "десятой", "десятыми", "десятыми" };
@@ -178,7 +178,7 @@ namespace Cyriller
                         this.Billion = new string[] { "миллиарде", "миллиардах", "миллиардах" };
                         this.Zero = "ноле";
 
-                        if (Gender == GendersEnum.Feminine)
+                        if (gender == GendersEnum.Feminine)
                         {
                             this.Integer = new string[] { "целой", "целых", "целых" };
                             this.DecimalTen = new string[] { "десятой", "десятых", "десятых" };
@@ -199,9 +199,9 @@ namespace Cyriller
                         break;
                 }
 
-                if (Gender == GendersEnum.Feminine)
+                if (gender == GendersEnum.Feminine)
                 {
-                    switch (Case)
+                    switch (@case)
                     {
                         case CasesEnum.Nominative:
                             this.Numbers[0] = "одна";
@@ -218,7 +218,7 @@ namespace Cyriller
                         case CasesEnum.Accusative:
                             this.Numbers[0] = "одну";
 
-                            if (Animate == AnimatesEnum.Animated)
+                            if (animate == AnimatesEnum.Animated)
                             {
                                 this.Numbers[1] = "двух";
                             }
@@ -238,9 +238,9 @@ namespace Cyriller
                             break;
                     }
                 }
-                else if (Gender == GendersEnum.Neuter)
+                else if (gender == GendersEnum.Neuter)
                 {
-                    switch (Case)
+                    switch (@case)
                     {
                         case CasesEnum.Nominative:
                             this.Numbers[0] = "одно";

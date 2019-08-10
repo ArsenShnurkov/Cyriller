@@ -7,164 +7,118 @@ using Cyriller.Model;
 
 namespace Cyriller
 {
-    public class CyrNoun
+    public class CyrNoun : CyrBaseWord
     {
         public const string Hyphen = "-";
 
-        protected GendersEnum gender;
-        protected AnimatesEnum animate;
-        protected WordTypesEnum type;
-        protected string name;
-        protected string collectionName;
-        protected CyrRule[] rules;
-        protected int rulesOffset = 11;
 
-        public CyrNoun(string Name, GendersEnum Gender, AnimatesEnum Animate, WordTypesEnum Type, CyrRule[] Rules)
-            : this(Name, Name, Gender, Animate, Type, Rules)
+        public string Name { get; protected set; }
+        public GendersEnum Gender { get; protected set; }
+        public AnimatesEnum Animate { get; protected set; }
+        public WordTypesEnum WordType { get; protected set; }
+
+        protected CyrRule[] rules;
+        protected int rulesPerNoun = 11;
+
+        public CyrNoun(string name, GendersEnum gender, AnimatesEnum animate, WordTypesEnum type, CyrRule[] rules)
+            : this(name, name, gender, animate, type, rules)
         {
         }
 
-        public CyrNoun(string Name, string CollectionName, GendersEnum Gender, AnimatesEnum Animate, WordTypesEnum Type, CyrRule[] Rules)
+        public CyrNoun(string name, string collectionName, GendersEnum gender, AnimatesEnum animate, WordTypesEnum type, CyrRule[] rules)
         {
-            this.collectionName = CollectionName;
-            this.name = Name;
-            this.gender = Gender;
-            this.animate = Animate;
-            this.type = Type;
-            this.rules = Rules;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
+            if (rules == null)
+            {
+                throw new ArgumentNullException(nameof(rules));
+            }
+
+            if (rules.Length % rulesPerNoun != 0)
+            {
+                throw new ArgumentException(nameof(rules), $"Noun rules collection must have {rulesPerNoun} * N elements.");
+            }
+
+            this.Name = name;
+            this.Gender = gender;
+            this.Animate = animate;
+            this.WordType = type;
+            this.rules = rules;
+        }
+
+        public CyrNoun(CyrNoun source)
+        {
+            this.Name = source.Name;
+            this.Gender = source.Gender;
+            this.Animate = source.Animate;
+            this.WordType = source.WordType;
+            this.rules = source.rules;
         }
 
         public bool IsAnimated
         {
             get
             {
-                return this.animate == AnimatesEnum.Animated;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-        }
-
-        public string CollectionName
-        {
-            get
-            {
-                return this.collectionName;
-            }
-        }
-
-        public bool ExactMatch
-        {
-            get
-            {
-                return this.name == this.collectionName;
-            }
-        }
-
-        public GendersEnum Gender
-        {
-            get
-            {
-                return this.gender;
-            }
-        }
-
-        public AnimatesEnum Animate
-        {
-            get
-            {
-                return this.animate;
-            }
-        }
-
-        public WordTypesEnum WordType
-        {
-            get
-            {
-                return this.type;
+                return this.Animate == AnimatesEnum.Animated;
             }
         }
 
         public CyrResult Decline()
         {
-            string[] parts = this.name.Split(Hyphen[0]);
+            string[] parts = this.Name.Split(Hyphen[0]);
 
-            if (parts.Length == 1 || this.rules.Length <= 11)
+            if (parts.Length == 1 || this.rules.Length <= this.rulesPerNoun)
             {
-                CyrResult result = new CyrResult(this.name,
-                    this.rules[0].Apply(this.name),
-                    this.rules[1].Apply(this.name),
-                    this.rules[2].Apply(this.name),
-                    this.rules[3].Apply(this.name),
-                    this.rules[4].Apply(this.name));
+                CyrRule[] rules = this.GetRules(NumbersEnum.Singular, 0);
+                CyrResult result = this.GetResult(this.Name, rules);
 
                 return result;
             }
 
-            return this.DeclineMultipleParts(parts);
+            return this.DeclineMultipleParts(parts, NumbersEnum.Singular);
         }
 
         public CyrResult DeclinePlural()
         {
-            string[] parts = this.name.Split(Hyphen[0]);
+            string[] parts = this.Name.Split(Hyphen[0]);
 
-            if (parts.Length == 1 || this.rules.Length <= 11)
+            if (parts.Length == 1 || this.rules.Length <= this.rulesPerNoun)
             {
-                CyrResult result = new CyrResult(this.rules[5].Apply(this.name),
-                    this.rules[6].Apply(this.name),
-                    this.rules[7].Apply(this.name),
-                    this.rules[8].Apply(this.name),
-                    this.rules[9].Apply(this.name),
-                    this.rules[10].Apply(this.name));
+                CyrRule[] rules = this.GetRules(NumbersEnum.Plural, 0);
+                CyrResult result = this.GetResult(this.Name, rules);
 
                 return result;
             }
 
-            return this.DeclinePluralMultipleParts(parts);
+            return this.DeclineMultipleParts(parts, NumbersEnum.Plural);
         }
 
-        protected CyrResult DeclineMultipleParts(string[] parts)
+        public void SetName(string name, CasesEnum @case, NumbersEnum number)
         {
-            List<CyrResult> results = new List<CyrResult>();
-
-            for (int i = 0; i < parts.Length; i++)
+            if (this.rules.Length > rulesPerNoun)
             {
-                int offest = i * this.rulesOffset;
-
-                CyrResult partResult = new CyrResult(parts[i],
-                    this.rules[0 + offest].Apply(parts[i]),
-                    this.rules[1 + offest].Apply(parts[i]),
-                    this.rules[2 + offest].Apply(parts[i]),
-                    this.rules[3 + offest].Apply(parts[i]),
-                    this.rules[4 + offest].Apply(parts[i]));
-
-                results.Add(partResult);
+                throw new NotImplementedException($"{nameof(SetName)} is not yet supported for composite nouns.");
             }
 
-            return this.JoinResults(results);
+            CyrRule[] rules = this.GetRules(number, 0);
+            CyrRule rule = rules[(int)@case - 1];
+
+            this.Name = rule.Revert(this.Name, name);
         }
 
-        protected CyrResult DeclinePluralMultipleParts(string[] parts)
+        protected CyrResult DeclineMultipleParts(string[] parts, NumbersEnum number)
         {
             List<CyrResult> results = new List<CyrResult>();
 
             for (int i = 0; i < parts.Length; i++)
             {
-                int offest = i * this.rulesOffset;
+                CyrRule[] rules = this.GetRules(number, i);
+                CyrResult result = this.GetResult(parts[i], rules);
 
-                CyrResult partResult = new CyrResult(this.rules[5 + offest].Apply(parts[i]),
-                    this.rules[6 + offest].Apply(parts[i]),
-                    this.rules[7 + offest].Apply(parts[i]),
-                    this.rules[8 + offest].Apply(parts[i]),
-                    this.rules[9 + offest].Apply(parts[i]),
-                    this.rules[10 + offest].Apply(parts[i]));
-
-                results.Add(partResult);
+                results.Add(result);
             }
 
             return this.JoinResults(results);
@@ -180,6 +134,34 @@ namespace Cyriller
                 string.Join(Hyphen, results.Select(x => x[(int)CasesEnum.Prepositional]).Where(x => !string.IsNullOrEmpty(x)).ToArray()));
 
             return result;
+        }
+
+        protected virtual CyrRule[] GetRules(NumbersEnum number, int wordPartIndex)
+        {
+            if (number == NumbersEnum.Singular)
+            {
+                return new CyrRule[]
+                {
+                    new CyrRule(string.Empty),
+                    this.rules[0 + wordPartIndex * rulesPerNoun],
+                    this.rules[1 + wordPartIndex * rulesPerNoun],
+                    this.rules[2 + wordPartIndex * rulesPerNoun],
+                    this.rules[3 + wordPartIndex * rulesPerNoun],
+                    this.rules[4 + wordPartIndex * rulesPerNoun]
+                };
+            }
+            else
+            {
+                return new CyrRule[]
+                {
+                    this.rules[5 + wordPartIndex * rulesPerNoun],
+                    this.rules[6 + wordPartIndex * rulesPerNoun],
+                    this.rules[7 + wordPartIndex * rulesPerNoun],
+                    this.rules[8 + wordPartIndex * rulesPerNoun],
+                    this.rules[9 + wordPartIndex * rulesPerNoun],
+                    this.rules[10 + wordPartIndex * rulesPerNoun]
+                };
+            }
         }
     }
 }

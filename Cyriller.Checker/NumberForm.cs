@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cyriller.Model;
 
 namespace Cyriller.Checker
 {
@@ -19,14 +20,14 @@ namespace Cyriller.Checker
             InitializeComponent();
         }
 
-        protected void SetResult(CyrResult Result) 
+        protected void SetResult(CyrResult result) 
         {
-            txtCase1.Text = Result[1];
-            txtCase2.Text = Result[2];
-            txtCase3.Text = Result[3];
-            txtCase4.Text = Result[4];
-            txtCase5.Text = Result[5];
-            txtCase6.Text = Result[6];
+            txtCase1.Text = result[1];
+            txtCase2.Text = result[2];
+            txtCase3.Text = result[3];
+            txtCase4.Text = result[4];
+            txtCase5.Text = result[5];
+            txtCase6.Text = result[6];
         }
 
         private void NumberForm_Load(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace Cyriller.Checker
 
                     try
                     {
-                        noun = cyrCollection.Get(txtItem.Text, Cyriller.Model.GetConditionsEnum.Similar);
+                        noun = cyrCollection.Get(txtItem.Text, out string fw, out CasesEnum c, out NumbersEnum n);
                     }
                     catch (CyrWordNotFoundException ex)
                     {

@@ -1,4 +1,5 @@
 ﻿@using Cyriller;
+@using Cyriller.Web.Models;
 @{
     string text = ViewBag.Text;
     string h;
@@ -27,36 +28,48 @@
     <legend></legend>
     <form method="get" class="decline-form form-horizontal">
         <div class="col-lg-10">
-            <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите прилагательное в именительном падеже" />
+            <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите прилагательное в любом падеже" />
         </div>
         <div class="col-lg-2">
             <button class="btn btn-primary" type="submit">Склонять</button>
         </div>
     </form>
 </fieldset>
-@if (ViewBag.Words != null)
+@if (ViewBag.Results != null)
 {
-    for (int i = 0; i < ViewBag.Words.Count; i++)
+    foreach (CyrAdjectiveDeclineResult result in ViewBag.Results)
     {
-        CyrAdjective cyr = ViewBag.Words[i];
-        CyrResult singular = ViewBag.Singulars[i];
-        CyrResult plural = ViewBag.Plurals[i];
+        string[] values = new string[] { result.FoundCaseStringRu, result.FoundNumberStringRu, result.FoundGenderStringRu };
+        string[] css = new string[] { "case", "number", "gender" };
+
         <h2 class="h-word">
-            <strong>@cyr.Name</strong>,
-            <span class="gender">
-                @switch (cyr.Gender)
+            <strong>@result.OriginalWord</strong>,
+
+            @for (int i = 0; i < values.Length; i++)
+            {
+                if (string.IsNullOrEmpty(values[i]))
                 {
-                    case Cyriller.Model.GendersEnum.Feminine: <em>женский</em>; break;
-                    case Cyriller.Model.GendersEnum.Neuter: <em>средний</em>; break;
-                    default:  <em>мужской</em>; break;
+                    continue;
                 }
-                род
-            </span>
+
+                bool isLast = !values.Skip(i + 1).Any(x => !string.IsNullOrEmpty(x));
+
+                <span class="@css[i]">
+                    @if (isLast)
+                    {
+                        <em>@values[i]</em>
+                    }
+                    else
+                    {
+                        <em>@values[i]</em>@:,
+                    }
+                </span>
+            }
         </h2>
-        if (!cyr.ExactMatch)
+        if (!result.ExactMatch)
         {
             <div class="alert alert-danger">
-                Слова <strong>@cyr.Name</strong> нет в словаре, но есть слово <strong>@cyr.CollectionName</strong>
+                Слова <strong>@result.OriginalWord</strong> нет в словаре, но есть слово <strong>@result.FoundWord</strong>
             </div>
         }
         <table class="table table-bordered table-cases">
@@ -75,10 +88,10 @@
                             @dc.NameRu, <span class="label label-default">@dc.Description</span>
                         </td>
                         <td>
-                            @singular[dc.Index]
+                            @result.Singular[dc.Index]
                         </td>
                         <td>
-                            @plural[dc.Index]
+                            @result.Plural[dc.Index]
                         </td>
                     </tr>
                 }
@@ -89,7 +102,7 @@
 else
 {
     <p class="p p-examples">
-        Введите слово или полное ФИО для склонения по падежам.<br />Например:
+        Введите прилагательное, в любом роде, числе и падеже, для склонения по падежам.<br />Например:
         <a href="javascript:">качественный</a>,
         <a href="javascript:">красивая</a>,
         <a href="javascript:">большой</a>,
@@ -100,10 +113,10 @@ else
 @section scripts
 {
     <script type="text/javascript">
-    $(function () {
-        $(".p-examples a").click(function () {
-            $(".decline-form input").val($(this).text());
+        $(function () {
+            $(".p-examples a").click(function () {
+                $(".decline-form input").val($(this).text());
+            });
         });
-    });
     </script>
 }

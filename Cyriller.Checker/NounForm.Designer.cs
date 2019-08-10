@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.txtCase1 = new System.Windows.Forms.TextBox();
             this.txtCase2 = new System.Windows.Forms.TextBox();
             this.txtCase3 = new System.Windows.Forms.TextBox();
@@ -50,55 +50,57 @@
             this.txtCollectionName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.tlpMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpMain
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.Controls.Add(this.txtCase1, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtCase2, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txtCase3, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.txtCase4, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.txtCase5, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.txtCase6, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.ddlAction, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtWord, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnDecline, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.txtDetails, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.txtCollectionName, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 14;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(751, 431);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tlpMain.ColumnCount = 2;
+            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tlpMain.Controls.Add(this.txtCase1, 1, 4);
+            this.tlpMain.Controls.Add(this.txtCase2, 1, 5);
+            this.tlpMain.Controls.Add(this.txtCase3, 1, 6);
+            this.tlpMain.Controls.Add(this.txtCase4, 1, 7);
+            this.tlpMain.Controls.Add(this.txtCase5, 1, 8);
+            this.tlpMain.Controls.Add(this.txtCase6, 1, 9);
+            this.tlpMain.Controls.Add(this.label2, 0, 4);
+            this.tlpMain.Controls.Add(this.label8, 0, 5);
+            this.tlpMain.Controls.Add(this.label3, 0, 6);
+            this.tlpMain.Controls.Add(this.label4, 0, 7);
+            this.tlpMain.Controls.Add(this.label5, 0, 8);
+            this.tlpMain.Controls.Add(this.label6, 0, 9);
+            this.tlpMain.Controls.Add(this.ddlAction, 1, 1);
+            this.tlpMain.Controls.Add(this.txtWord, 1, 3);
+            this.tlpMain.Controls.Add(this.btnDecline, 1, 12);
+            this.tlpMain.Controls.Add(this.label1, 0, 11);
+            this.tlpMain.Controls.Add(this.txtDetails, 1, 11);
+            this.tlpMain.Controls.Add(this.label7, 0, 10);
+            this.tlpMain.Controls.Add(this.txtCollectionName, 1, 10);
+            this.tlpMain.Controls.Add(this.label9, 1, 0);
+            this.tlpMain.Controls.Add(this.label11, 1, 2);
+            this.tlpMain.Controls.Add(this.txtLog, 1, 13);
+            this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpMain.Location = new System.Drawing.Point(0, 0);
+            this.tlpMain.Name = "tlpMain";
+            this.tlpMain.RowCount = 14;
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpMain.Size = new System.Drawing.Size(751, 532);
+            this.tlpMain.TabIndex = 1;
             // 
             // txtCase1
             // 
@@ -234,6 +236,7 @@
             this.txtWord.Name = "txtWord";
             this.txtWord.Size = new System.Drawing.Size(520, 20);
             this.txtWord.TabIndex = 23;
+            this.txtWord.Text = "мроты";
             // 
             // btnDecline
             // 
@@ -299,27 +302,38 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(228, 68);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(337, 13);
+            this.label11.Size = new System.Drawing.Size(179, 13);
             this.label11.TabIndex = 30;
-            this.label11.Text = "Существительное в именительном падеже единственного числа";
+            this.label11.Text = "Существительное в любой форме";
+            // 
+            // txtLog
+            // 
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(227, 392);
+            this.txtLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.Size = new System.Drawing.Size(522, 138);
+            this.txtLog.TabIndex = 31;
+            this.txtLog.Text = "";
             // 
             // NounForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpMain);
             this.Name = "NounForm";
-            this.Size = new System.Drawing.Size(751, 431);
+            this.Size = new System.Drawing.Size(751, 532);
             this.Load += new System.EventHandler(this.NounForm_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlpMain.ResumeLayout(false);
+            this.tlpMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpMain;
         private System.Windows.Forms.TextBox txtCase1;
         private System.Windows.Forms.Button btnDecline;
         private System.Windows.Forms.TextBox txtCase2;
@@ -341,5 +355,6 @@
         private System.Windows.Forms.TextBox txtCollectionName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RichTextBox txtLog;
     }
 }

@@ -13,13 +13,13 @@ namespace Cyriller
         public int TypeID { get; set; }
         public int RuleID { get; set; }
 
-        public static CyrNounCollectionRow Parse(string Value)
+        public static CyrNounCollectionRow Parse(string value)
         {
-            string[] parts = Value.Split(',');
+            string[] parts = value.Split(',');
 
             if (parts.Length != 4)
             {
-                throw new ArgumentException($"{Value} is not a valid representation of {nameof(CyrNounCollectionRow)}!");
+                throw new ArgumentException($"{value} is not a valid representation of {nameof(CyrNounCollectionRow)}!");
             }
 
             CyrNounCollectionRow row = new CyrNounCollectionRow();

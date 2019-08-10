@@ -8,42 +8,42 @@ namespace Cyriller
 {
     public static class Extensions
     {
-        public static bool IsNullOrEmpty(this string Value)
+        public static bool IsNullOrEmpty(this string value)
         {
-            return string.IsNullOrEmpty(Value);
+            return string.IsNullOrEmpty(value);
         }
 
-        public static bool IsNotNullOrEmpty(this string Value)
+        public static bool IsNotNullOrEmpty(this string value)
         {
-            return !string.IsNullOrEmpty(Value);
+            return !string.IsNullOrEmpty(value);
         }
 
-        public static string ReplaceRegex(this string Value, string RegexWhat, string ReplaceTo)
+        public static string ReplaceRegex(this string value, string regexWhat, string replaceTo)
         {
-            if (Value.IsNullOrEmpty() || RegexWhat.IsNullOrEmpty())
+            if (value.IsNullOrEmpty() || regexWhat.IsNullOrEmpty())
             {
-                return Value;
+                return value;
             }
 
-            return System.Text.RegularExpressions.Regex.Replace(Value, RegexWhat, ReplaceTo);
+            return Regex.Replace(value, regexWhat, replaceTo);
         }
 
-        public static bool RegexHasMatches(this String Value, String RegexPattern, Boolean CaseSensetive = false, Boolean MultiLine = true)
+        public static bool RegexHasMatches(this string value, string regexPattern, bool caseSensetive = false, bool multiLine = true)
         {
-            Value = Value ?? string.Empty;
-            RegexOptions options = !CaseSensetive ? RegexOptions.IgnoreCase : RegexOptions.None;
-            options |= MultiLine ? RegexOptions.Multiline : options;
-            return Regex.IsMatch(Value, RegexPattern, options);
+            value = value ?? string.Empty;
+            RegexOptions options = !caseSensetive ? RegexOptions.IgnoreCase : RegexOptions.None;
+            options |= multiLine ? RegexOptions.Multiline : options;
+            return Regex.IsMatch(value, regexPattern, options);
         }
 
-        public static string UppercaseFirst(this string Value)
+        public static string UppercaseFirst(this string value)
         {
-            if (Value.IsNullOrEmpty())
+            if (value.IsNullOrEmpty())
             {
                 return string.Empty;
             }
 
-            return char.ToUpper(Value[0]) + Value.Substring(1);
+            return char.ToUpper(value[0]) + value.Substring(1);
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>Konstantin Mi (miyconst)</Authors>
+    <Company>http://www.miyconst.com/</Company>
+    <Description>Russian language declension library samples</Description>
+    <Copyright>Copyright © Konstantin Mi 2014-2019</Copyright>
+    <PackageLicenseUrl>https://github.com/miyconst/Cyriller/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/miyconst/Cyriller</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/miyconst/Cyriller/master/Cyriller.Web/favicon.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/miyconst/Cyriller</RepositoryUrl>
+    <PackageTags>склонение существительное прилагательное число падеж</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cyriller.Model\Cyriller.Model.csproj" />
+    <ProjectReference Include="..\Cyriller.Rule\Cyriller.Rule.csproj" />
+    <ProjectReference Include="..\Cyriller\Cyriller.csproj" />
+  </ItemGroup>
+
+</Project>

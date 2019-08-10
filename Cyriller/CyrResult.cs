@@ -20,34 +20,49 @@ namespace Cyriller
         {
         }
 
-        public CyrResult(string Word)
+        public CyrResult(string word)
         {
-            this.case1 = Word;
-            this.case2 = Word;
-            this.case3 = Word;
-            this.case4 = Word;
-            this.case5 = Word;
-            this.case6 = Word;
+            this.case1 = word;
+            this.case2 = word;
+            this.case3 = word;
+            this.case4 = word;
+            this.case5 = word;
+            this.case6 = word;
         }
 
-        public CyrResult(string Case1, string Case2, string Case3, string Case4, string Case5, string Case6)
+        public CyrResult(string case1, string case2, string case3, string case4, string case5, string case6)
         {
-            this.case1 = Case1;
-            this.case2 = Case2;
-            this.case3 = Case3;
-            this.case4 = Case4;
-            this.case5 = Case5;
-            this.case6 = Case6;
+            this.case1 = case1;
+            this.case2 = case2;
+            this.case3 = case3;
+            this.case4 = case4;
+            this.case5 = case5;
+            this.case6 = case6;
         }
 
-        public static CyrResult operator +(CyrResult A, CyrResult B)
+        public CyrResult(string[] cases)
         {
-            return new CyrResult(A.case1 + " " + B.case1,
-                A.case2 + " " + B.case2,
-                A.case3 + " " + B.case3,
-                A.case4 + " " + B.case4,
-                A.case5 + " " + B.case5,
-                A.case6 + " " + B.case6);
+            if (cases.Length != 6)
+            {
+                throw new ArgumentException("Declension result must have six parts.");
+            }
+
+            this.case1 = cases[0];
+            this.case2 = cases[1];
+            this.case3 = cases[2];
+            this.case4 = cases[3];
+            this.case5 = cases[4];
+            this.case6 = cases[5];
+        }
+
+        public static CyrResult operator +(CyrResult a, CyrResult b)
+        {
+            return new CyrResult(a.case1 + " " + b.case1,
+                a.case2 + " " + b.case2,
+                a.case3 + " " + b.case3,
+                a.case4 + " " + b.case4,
+                a.case5 + " " + b.case5,
+                a.case6 + " " + b.case6);
         }
 
         /// <summary>
@@ -182,9 +197,9 @@ namespace Cyriller
             }
         }
 
-        public string Get(CasesEnum Case)
+        public string Get(CasesEnum @case)
         {
-            switch (Case)
+            switch (@case)
             {
                 case CasesEnum.Nominative: return case1;
                 case CasesEnum.Genitive: return case2;
@@ -196,28 +211,28 @@ namespace Cyriller
             }
         }
 
-        public void Set(CasesEnum Case, string Value)
+        public void Set(CasesEnum @case, string value)
         {
-            switch (Case)
+            switch (@case)
             {
-                case CasesEnum.Nominative: case1 = Value; break;
-                case CasesEnum.Genitive: case2 = Value; break;
-                case CasesEnum.Dative: case3 = Value; break;
-                case CasesEnum.Accusative: case4 = Value; break;
-                case CasesEnum.Instrumental: case5 = Value; break;
-                case CasesEnum.Prepositional: case6 = Value; break;
-                default: case1 = Value; break;
+                case CasesEnum.Nominative: case1 = value; break;
+                case CasesEnum.Genitive: case2 = value; break;
+                case CasesEnum.Dative: case3 = value; break;
+                case CasesEnum.Accusative: case4 = value; break;
+                case CasesEnum.Instrumental: case5 = value; break;
+                case CasesEnum.Prepositional: case6 = value; break;
+                default: case1 = value; break;
             }
         }
 
-        public void Add(CyrResult Result, string Separator = "-")
+        public void Add(CyrResult result, string separator = "-")
         {
-            this.case1 += Separator + Result.case1;
-            this.case2 += Separator + Result.case2;
-            this.case3 += Separator + Result.case3;
-            this.case4 += Separator + Result.case4;
-            this.case5 += Separator + Result.case5;
-            this.case6 += Separator + Result.case6;
+            this.case1 += separator + result.case1;
+            this.case2 += separator + result.case2;
+            this.case3 += separator + result.case3;
+            this.case4 += separator + result.case4;
+            this.case5 += separator + result.case5;
+            this.case6 += separator + result.case6;
         }
 
         public List<string> ToList()
@@ -276,27 +291,28 @@ namespace Cyriller
         }
 
         /// <summary>
-        /// One based index. See the CasesEnum enumeration.
+        /// Индекс для получения формы слова по номеру падежа. Доступные значения 1 – 6. 
+        /// Смотри <see cref="CasesEnum"/>.
         /// </summary>
-        /// <param name="Index"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public string this[int Index]
+        public string this[int index]
         {
             get
             {
-                this.CheckIndex(Index);
-                return this.Get((CasesEnum)Index);
+                this.CheckIndex(index);
+                return this.Get((CasesEnum)index);
             }
             set
             {
-                this.CheckIndex(Index);
-                this.Set((CasesEnum)Index, value);
+                this.CheckIndex(index);
+                this.Set((CasesEnum)index, value);
             }
         }
 
-        protected void CheckIndex(int Index)
+        protected void CheckIndex(int index)
         {
-            if (Index == 0)
+            if (index == 0)
             {
                 throw new IndexOutOfRangeException("This is a one based index!");
             }

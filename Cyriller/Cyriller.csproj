@@ -1,108 +1,80 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18887BCA-64CF-4FD0-84F5-3003B3003640}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cyriller</RootNamespace>
-    <AssemblyName>Cyriller</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <PackageId>Miyconst.Cyriller</PackageId>
+    <Version>0.1.0</Version>
+    <Description>Библиотека для склонения существительных, прилагательных, чисел и личных имен русского языка по падежам.</Description>
+    <Company>http://www.miyconst.com/</Company>
+    <Copyright>Copyright © Konstantin Mi 2014-2019</Copyright>
+    <PackageLicenseUrl>https://github.com/miyconst/Cyriller/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/miyconst/Cyriller</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/miyconst/Cyriller</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/miyconst/Cyriller/master/Cyriller.Web/favicon.ico</PackageIconUrl>
+    <Authors>Konstantin Mi (miyconst)</Authors>
+    <PackageTags>склонение существительное прилагательное число имя падеж</PackageTags>
+    <PackageReleaseNotes>Новая схема хранения и использования словарей с возможностью распознавания существительных и прилагательных во всех склонениях.
+Поддержка netstandard2.0 и net45 для использования в приложениях под управлением .NET Core и .NET Framework.
+
+Важно: API версии 0.1.0 не совместим с предыдущими версиями.</PackageReleaseNotes>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
+    <None Remove="App_Data\adjectives.gz" />
+    <None Remove="App_Data\nouns.gz" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="App_Data\adjective-rules.txt" />
-    <Compile Include="CyrAdjective.cs" />
-    <Compile Include="CyrAdjectiveCollection.cs" />
-    <Compile Include="CyrData.cs" />
-    <Compile Include="CyrDeclineCase.cs" />
-    <Compile Include="CyrNoun.cs" />
-    <Compile Include="CyrNounCollectionRow.cs" />
-    <Compile Include="CyrNumber.cs" />
-    <Compile Include="CyrNumber.Currency.cs" />
-    <Compile Include="CyrNumber.Item.cs" />
-    <Compile Include="CyrNumber.Strings.cs" />
-    <Compile Include="CyrPhrase.cs" />
-    <Compile Include="CyrResult.cs" />
-    <Compile Include="CyrRule.cs" />
-    <Compile Include="CyrName.cs" />
-    <Compile Include="CyrWordNotFoundException.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Model\AnimatesEnum.cs" />
-    <Compile Include="Model\CasesEnum.cs" />
-    <Compile Include="Model\GendersEnum.cs" />
-    <Compile Include="Model\GetConditionsEnum.cs" />
-    <Compile Include="Model\NumbersEnum.cs" />
-    <Compile Include="Model\SpeechPartsEnum.cs" />
-    <Compile Include="Model\WordTypesEnum.cs" />
-    <Compile Include="CyrNounCollection.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="App_Data\adjectives.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="App_Data\noun-rules.gz" />
-    <EmbeddedResource Include="App_Data\nouns.gz" />
-    <EmbeddedResource Include="App_Data\adjective-rules.gz" />
     <EmbeddedResource Include="App_Data\adjectives.gz" />
-    <None Include="Cyriller.nuspec" />
+    <EmbeddedResource Include="App_Data\nouns.gz" />
   </ItemGroup>
+
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="Properties\" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="App_Data\noun-rules.txt" />
-    <None Include="App_Data\nouns.txt" />
+    <ProjectReference Include="..\Cyriller.Model\Cyriller.Model.csproj" PrivateAssets="All"></ProjectReference>
+    <ProjectReference Include="..\Cyriller.Rule\Cyriller.Rule.csproj" PrivateAssets="All"></ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+
+  <ItemGroup>
+    <None Update="App_Data\adjectives.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>adjectives.txt</LastGenOutput>
+    </None>
+    <None Update="App_Data\adjectives.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>adjectives.tt</DependentUpon>
+    </None>
+    <None Update="App_Data\nouns.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>nouns.txt</LastGenOutput>
+    </None>
+    <None Update="App_Data\nouns.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>nouns.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet run --no-build --no-restore --project $(ProjectDir)..\Cyriller.Zipper\Cyriller.Zipper.csproj $(ProjectDir)App_Data\nouns.txt $(ProjectDir)App_Data\nouns.gz OnlyIfSourceIsNewer&#xD;&#xA;dotnet run --no-build --no-restore --project $(ProjectDir)..\Cyriller.Zipper\Cyriller.Zipper.csproj $(ProjectDir)App_Data\adjectives.txt $(ProjectDir)App_Data\adjectives.gz OnlyIfSourceIsNewer" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

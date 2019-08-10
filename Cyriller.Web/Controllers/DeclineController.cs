@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.IO;
 using OfficeOpenXml;
 using Cyriller.Model;
+using Cyriller.Web.Models;
 
 namespace Cyriller.Web.Controllers
 {
@@ -25,18 +26,19 @@ namespace Cyriller.Web.Controllers
             }
 
             List<string> errors = new List<string>();
-            List<CyrNoun> words = new List<CyrNoun>();
-            List<CyrResult> singulars = new List<CyrResult>();
-            List<CyrResult> plurals = new List<CyrResult>();
             CyrNounCollection collection = this.NounCollection;
+            List<CyrNounDeclineResult> results = new List<CyrNounDeclineResult>();
 
             foreach (string s in w.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 CyrNoun word;
+                string foundWord;
+                CasesEnum foundCase;
+                NumbersEnum foundNumber;
 
                 try
                 {
-                    word = collection.Get(s, GetConditionsEnum.Similar);
+                    word = collection.Get(s, out foundWord, out foundCase, out foundNumber);
                 }
                 catch (CyrWordNotFoundException)
                 {
@@ -44,17 +46,27 @@ namespace Cyriller.Web.Controllers
                     continue;
                 }
 
-                words.Add(word);
-                singulars.Add(word.Decline());
-                plurals.Add(word.DeclinePlural());
+                CyrNounDeclineResult result = new CyrNounDeclineResult()
+                {
+                    Name = word.Name,
+                    OriginalWord = s,
+                    FoundWord = foundWord,
+                    FoundCase = foundCase,
+                    FoundNumber = foundNumber,
+                    Singular = word.Decline(),
+                    Plural = word.DeclinePlural(),
+                    Gender = word.Gender,
+                    WordType = word.WordType,
+                    Animate = word.Animate
+                };
+
+                results.Add(result);
             }
 
             ViewBag.Text = w;
             ViewBag.Errors = errors;
-            ViewBag.Words = words;
-            ViewBag.Singulars = singulars;
-            ViewBag.Plurals = plurals;
-            ViewBag.Cases = CyrDeclineCase.List;
+            ViewBag.Results = results;
+            ViewBag.Cases = CyrDeclineCase.GetEnumerable().ToArray();
 
             return View();
         }
@@ -70,18 +82,21 @@ namespace Cyriller.Web.Controllers
             }
 
             List<string> errors = new List<string>();
-            List<CyrAdjective> words = new List<CyrAdjective>();
-            List<CyrResult> singulars = new List<CyrResult>();
-            List<CyrResult> plurals = new List<CyrResult>();
+            List<CyrAdjectiveDeclineResult> results = new List<CyrAdjectiveDeclineResult>();
             CyrAdjectiveCollection collection = this.AdjectiveCollection;
 
             foreach (string s in w.Split(' ').Where(val => !string.IsNullOrEmpty(val)))
             {
                 CyrAdjective word;
+                string foundWord;
+                GendersEnum foundGender;
+                CasesEnum foundCase;
+                NumbersEnum foundNumber;
+                AnimatesEnum foundAnimate;
 
                 try
                 {
-                    word = collection.Get(s, GetConditionsEnum.Similar);
+                    word = collection.Get(s, out foundWord, out foundGender, out foundCase, out foundNumber, out foundAnimate);
                 }
                 catch (CyrWordNotFoundException)
                 {
@@ -89,17 +104,26 @@ namespace Cyriller.Web.Controllers
                     continue;
                 }
 
-                words.Add(word);
-                singulars.Add(word.Decline(AnimatesEnum.Animated));
-                plurals.Add(word.DeclinePlural(AnimatesEnum.Animated));
+                CyrAdjectiveDeclineResult result = new CyrAdjectiveDeclineResult()
+                {
+                    Name = word.Name,
+                    OriginalWord = s,
+                    FoundWord = foundWord,
+                    FoundGender = foundGender,
+                    FoundCase = foundCase,
+                    FoundNumber = foundNumber,
+                    FoundAnimate = foundAnimate,
+                    Singular = word.Decline(foundGender == 0 ? GendersEnum.Masculine : foundGender, foundAnimate),
+                    Plural = word.DeclinePlural(foundAnimate)
+                };
+
+                results.Add(result);
             }
 
             ViewBag.Text = w;
             ViewBag.Errors = errors;
-            ViewBag.Words = words;
-            ViewBag.Singulars = singulars;
-            ViewBag.Plurals = plurals;
-            ViewBag.Cases = CyrDeclineCase.List;
+            ViewBag.Results = results;
+            ViewBag.Cases = CyrDeclineCase.GetEnumerable().ToArray();
 
             return View();
         }
@@ -134,7 +158,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Errors = errors;
             ViewBag.Singular = singular;
             ViewBag.Plural = plural;
-            ViewBag.Cases = CyrDeclineCase.List;
+            ViewBag.Cases = CyrDeclineCase.GetEnumerable().ToArray();
 
             return View();
         }
@@ -166,7 +190,7 @@ namespace Cyriller.Web.Controllers
 
                         try
                         {
-                            noun = this.NounCollection.Get(i, GetConditionsEnum.Similar);
+                            noun = this.NounCollection.Get(i, out string fw, out CasesEnum c, out NumbersEnum n);
                         }
                         catch (CyrWordNotFoundException ex)
                         {
@@ -230,7 +254,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Action = a;
             ViewBag.Result = result;
             ViewBag.Errors = errors;
-            ViewBag.Cases = CyrDeclineCase.List;
+            ViewBag.Cases = CyrDeclineCase.GetEnumerable().ToArray();
 
             return View();
         }
@@ -296,7 +320,7 @@ namespace Cyriller.Web.Controllers
             ViewBag.Errors = errors;
             ViewBag.Singulars = singulars;
             ViewBag.Plurals = plurals;
-            ViewBag.Cases = CyrDeclineCase.List;
+            ViewBag.Cases = CyrDeclineCase.GetEnumerable().ToArray();
 
             return View();
         }
@@ -373,7 +397,7 @@ namespace Cyriller.Web.Controllers
 
             string name = Guid.NewGuid() + ".xlsx";
             string path = Path.Combine(TempFolder, name);
-            CyrDeclineCase[] cases = CyrDeclineCase.List;
+            CyrDeclineCase[] cases = CyrDeclineCase.GetEnumerable().ToArray();
             CyrPhrase phrase = new CyrPhrase(NounCollection, AdjectiveCollection);
 
             ExcelWorksheet input = package.Workbook.Worksheets[1];
@@ -432,7 +456,7 @@ namespace Cyriller.Web.Controllers
         {
             string name = Guid.NewGuid() + ".txt";
             string path = Path.Combine(TempFolder, name);
-            CyrDeclineCase[] cases = CyrDeclineCase.List;
+            CyrDeclineCase[] cases = CyrDeclineCase.GetEnumerable().ToArray();
             CyrPhrase phrase = new CyrPhrase(NounCollection, AdjectiveCollection);
 
             TextReader reader = new StreamReader(File.InputStream, true);

@@ -17,11 +17,11 @@ namespace Cyriller.Checker
             InitializeComponent();
         }
 
-        protected void OpenForm(Control Form)
+        protected void OpenForm(Control form)
         {
-            Form.Dock = DockStyle.Fill;
+            form.Dock = DockStyle.Fill;
             pnlContainer.Controls.Clear();
-            pnlContainer.Controls.Add(Form);
+            pnlContainer.Controls.Add(form);
         }
 
         private void msiNumber_Click(object sender, EventArgs e)
@@ -54,14 +54,9 @@ namespace Cyriller.Checker
             OpenForm(new PhraseForm());
         }
 
-        private void msiZipDictionary_Click(object sender, EventArgs e)
+        private void msiExportToJson_Click(object sender, EventArgs e)
         {
-            OpenForm(new ZipForm());
-        }
-
-        private void msiRuleNoun_Click(object sender, EventArgs e)
-        {
-            OpenForm(new NounRuleForm());
+            OpenForm(new JsonForm());
         }
     }
 }
