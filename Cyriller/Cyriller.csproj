@@ -14,10 +14,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/miyconst/Cyriller/master/Cyriller.Web/favicon.ico</PackageIconUrl>
     <Authors>Konstantin Mi (miyconst)</Authors>
     <PackageTags>склонение существительное прилагательное число имя падеж</PackageTags>
-    <PackageReleaseNotes>Новая схема хранения и использования словарей с возможностью распознавания существительных и прилагательных во всех склонениях.
-Поддержка netstandard2.0 и net45 для использования в приложениях под управлением .NET Core и .NET Framework.
-
-Важно: API версии 0.1.0 не совместим с предыдущими версиями.</PackageReleaseNotes>
+    <PackageReleaseNotes>Улучшена работа класса CyrName для склонения имен иностранного происхождения с 'оглы' и 'кызы', без использования словаря.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
