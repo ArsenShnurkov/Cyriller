@@ -4,10 +4,10 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <PackageId>Miyconst.Cyriller</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Description>Библиотека для склонения существительных, прилагательных, чисел и личных имен русского языка по падежам.</Description>
     <Company>http://www.miyconst.com/</Company>
-    <Copyright>Copyright © Konstantin Mi 2014-2019</Copyright>
+    <Copyright>Copyright © Konstantin Mi 2014-2020</Copyright>
     <PackageLicenseUrl>https://github.com/miyconst/Cyriller/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/miyconst/Cyriller</PackageProjectUrl>
     <RepositoryUrl>https://github.com/miyconst/Cyriller</RepositoryUrl>
