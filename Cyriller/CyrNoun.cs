@@ -11,7 +11,6 @@ namespace Cyriller
     {
         public const string Hyphen = "-";
 
-
         public string Name { get; protected set; }
         public GendersEnum Gender { get; protected set; }
         public AnimatesEnum Animate { get; protected set; }
