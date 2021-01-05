@@ -58,7 +58,7 @@ dotnet run
 
 ### Проект `Cyriller.Checker`
 
-.NET Framework 4.5 Windows Forms приложение для визуальной проверки работы. Для полной работы приложения требуется развернуть [MS-SQL базу данных](http://cyriller.2try.ws/Download) и настроить подключение.
+.NET Framework 4.5 Windows Forms приложение для визуальной проверки работы. Для полной работы приложения требуется развернуть [MS-SQL базу данных](http://cyriller.1gb.ru/Download) и настроить подключение.
 
 ### Проект `Cyriller.Samples`
 
@@ -173,7 +173,7 @@ dotnet run
 
 ## Демо
 
-Cyriller можно протестировать онлайн - [http://cyriller.2try.ws/](http://cyriller.2try.ws/).
+Cyriller можно протестировать онлайн - [http://cyriller.1gb.ru/](http://cyriller.1gb.ru/).
 
 ## NuGet пакет
 
