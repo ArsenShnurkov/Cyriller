@@ -1,6 +1,10 @@
 Cyriller - бесплатная программа склонения по падежам
 ========
 
+![image](https://user-images.githubusercontent.com/6435556/175002068-9539e48f-2560-414d-9bd1-0ca1f5163fa3.png)
+
+### [What should Russia do with Ukraine? (Translation of a propaganda article by a Russian publication)](https://medium.com/@kravchenko_mm/what-should-russia-do-with-ukraine-translation-of-a-propaganda-article-by-a-russian-journalist-a3e92e3cb64)
+
 Кириллер, это полностью открытый проект на c#, который является бесплатной альтернативой Морферу. 
 На данные момент программа умеет:
 
