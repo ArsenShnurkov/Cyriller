@@ -7,35 +7,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using Cyriller.Model;
 
 namespace Cyriller.Checker
 {
     public partial class AdjectiveForm : UserControl
     {
-        CyrAdjectiveCollection cyrCollection;
+        private static CyrAdjectiveCollection cyrCollection;
 
         public AdjectiveForm()
         {
             InitializeComponent();
         }
 
-        protected void SetResult(CyrResult Result)
+        protected void SetResult(CyrResult result)
         {
-            txtCase1.Text = Result[1];
-            txtCase2.Text = Result[2];
-            txtCase3.Text = Result[3];
-            txtCase4.Text = Result[4];
-            txtCase5.Text = Result[5];
-            txtCase6.Text = Result[6];
+            txtCase1.Text = result[1];
+            txtCase2.Text = result[2];
+            txtCase3.Text = result[3];
+            txtCase4.Text = result[4];
+            txtCase5.Text = result[5];
+            txtCase6.Text = result[6];
         }
 
-        private void AdjectiveForm_Load(object sender, EventArgs e)
+        protected void Log(string text)
         {
-            ddlAction.SelectedIndex = 0;
+            string line = $"{DateTime.Now.ToString("yyyy.MM.dd HH:mm: ")} {text}{Environment.NewLine}";
+
+            txtLog.Text = line + txtLog.Text;
+        }
+
+        private async void AdjectiveForm_Load(object sender, EventArgs e)
+        {
+            await this.LoadCollection();
+
+            ddlNumber.SelectedIndex = 0;
             ddlGender.SelectedIndex = 0;
-            cyrCollection = new CyrAdjectiveCollection();
+            ddlAnimate.SelectedIndex = 0;
+
             this.ParentForm.AcceptButton = btnDecline;
+        }
+
+        private async Task LoadCollection()
+        {
+            if (cyrCollection != null)
+            {
+                return;
+            }
+
+            Stopwatch watch = new Stopwatch(); LoadingForm formLoading = new LoadingForm()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            this.Cursor = Cursors.WaitCursor;
+            this.tlpMain.Visible = false;
+            this.Controls.Add(formLoading);
+
+            watch.Start();
+            await Task.Run(() =>
+            {
+                cyrCollection = new CyrAdjectiveCollection();
+            });
+            watch.Stop();
+
+            this.Log($"Создание {nameof(CyrAdjectiveCollection)} заняло {watch.Elapsed}.");
+            this.Cursor = Cursors.Default;
+            this.tlpMain.Visible = true;
+            this.Controls.Remove(formLoading);
         }
 
         private void btnDecline_Click(object sender, EventArgs e)
@@ -46,24 +86,35 @@ namespace Cyriller.Checker
             }
 
             CyrAdjective adj;
-            GendersEnum gender = 0;
+            GendersEnum declineToGender = (GendersEnum)(ddlGender.SelectedIndex + 1);
+            AnimatesEnum declineToAnimate = (AnimatesEnum)(ddlAnimate.SelectedIndex + 1);
+            NumbersEnum declineToNumber = (NumbersEnum)(ddlNumber.SelectedIndex + 1);
 
-            switch (ddlGender.SelectedIndex)
-            {
-                case 1:
-                    gender = GendersEnum.Masculine;
-                    break;
-                case 2:
-                    gender = GendersEnum.Feminine;
-                    break;
-                case 3:
-                    gender = GendersEnum.Neuter;
-                    break;
-            }
+            string foundWord;
+            GendersEnum foundGender;
+            CasesEnum foundCase;
+            NumbersEnum foundNumber;
+            AnimatesEnum foundAnimate;
+            CyrResult result = null;
 
             try
             {
-                adj = cyrCollection.Get(txtWord.Text, GetConditionsEnum.Similar, gender);
+                Stopwatch watch = new Stopwatch();
+
+                watch.Start();
+                adj = cyrCollection.Get(txtWord.Text, out foundWord, out foundGender, out foundCase, out foundNumber, out foundAnimate);
+
+                if (declineToNumber == NumbersEnum.Singular)
+                {
+                    result = adj.Decline(declineToGender, declineToAnimate);
+                }
+                else
+                {
+                    result = adj.DeclinePlural(declineToAnimate);
+                }
+
+                watch.Stop();
+                this.Log($"Склонение слова {txtWord.Text} заняло {watch.Elapsed}.");
             }
             catch (CyrWordNotFoundException)
             {
@@ -71,43 +122,17 @@ namespace Cyriller.Checker
                 return;
             }
 
-            switch (ddlAction.SelectedIndex)
+            this.SetResult(result);
+            txtCollectionName.Text = foundWord;
+            txtDetails.Text = $"{foundGender}, {foundCase}, {foundNumber}, {foundAnimate}";
+
+            if (txtWord.Text == foundWord)
             {
-                case 0:
-                    this.SetResult(adj.Decline(AnimatesEnum.Animated));
-                    break;
-                case 1:
-                    this.SetResult(adj.DeclinePlural(AnimatesEnum.Animated));
-                    break;
-
-                default:
-                    MessageBox.Show("Необходимо выбрать тип склонения!");
-                    return;
-            }
-
-            txtCollectionName.Text = adj.CollectionName;
-            txtDetails.Text = string.Empty;
-
-            switch (adj.Gender)
-            {
-                case Cyriller.Model.GendersEnum.Feminine:
-                    txtDetails.Text += "женский род";
-                    break;
-                case Cyriller.Model.GendersEnum.Masculine:
-                    txtDetails.Text += "мужской род";
-                    break;
-                case Cyriller.Model.GendersEnum.Neuter:
-                    txtDetails.Text += "средний род";
-                    break;
-            }
-
-            if (adj.ExactMatch)
-            {
-                txtCollectionName.BackColor = System.Drawing.SystemColors.Control;
+                txtCollectionName.BackColor = SystemColors.Control;
             }
             else
             {
-                txtCollectionName.BackColor = System.Drawing.SystemColors.Highlight;
+                txtCollectionName.BackColor = SystemColors.Highlight;
             }
         }
     }

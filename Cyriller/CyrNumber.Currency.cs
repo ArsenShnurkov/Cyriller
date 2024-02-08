@@ -11,26 +11,28 @@ namespace Cyriller
     {
         public abstract class Currency
         {
-            public GendersEnum IntegerGender { get; set; }
-            public GendersEnum DecimalGender { get; set; }
-            public int Decimals { get; set; }
+            public virtual string Name { get; protected set; }
+            public virtual GendersEnum IntegerGender { get; protected set; }
+            public virtual GendersEnum DecimalGender { get; protected set; }
+            public virtual int Decimals { get; protected set; }
 
-            public abstract string[] GetIntegerName(CasesEnum Case);
-            public abstract string[] GetDecimalName(CasesEnum Case);
+            public abstract string[] GetIntegerName(CasesEnum @case);
+            public abstract string[] GetDecimalName(CasesEnum @case);
         }
 
         public class RurCurrency : Currency
         {
             public RurCurrency()
             {
+                this.Name = "Российский рубль (руб) ₽";
                 this.IntegerGender = GendersEnum.Masculine;
                 this.DecimalGender = GendersEnum.Feminine;
                 this.Decimals = 2;
             }
 
-            public override string[] GetIntegerName(CasesEnum Case)
+            public override string[] GetIntegerName(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { "рубль", "рубля", "рублей" };
@@ -49,9 +51,9 @@ namespace Cyriller
                 throw new ArgumentOutOfRangeException("Invalid decline case!");
             }
 
-            public override string[] GetDecimalName(CasesEnum Case)
+            public override string[] GetDecimalName(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { "копейка", "копейки", "копеек" };
@@ -75,6 +77,7 @@ namespace Cyriller
         {
             public UsdCurrency()
             {
+                this.Name = "Американский доллар (USD) $";
                 this.IntegerGender = GendersEnum.Masculine;
                 this.DecimalGender = GendersEnum.Masculine;
                 this.Decimals = 2;
@@ -101,9 +104,9 @@ namespace Cyriller
                 throw new ArgumentOutOfRangeException("Invalid decline case!");
             }
 
-            public override string[] GetDecimalName(CasesEnum Case)
+            public override string[] GetDecimalName(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { "цент", "цента", "центов" };
@@ -127,14 +130,15 @@ namespace Cyriller
         {
             public EurCurrency()
             {
+                this.Name = "Евро (EUR) €";
                 this.IntegerGender = GendersEnum.Neuter;
                 this.DecimalGender = GendersEnum.Masculine;
                 this.Decimals = 2;
             }
 
-            public override string[] GetIntegerName(CasesEnum Case)
+            public override string[] GetIntegerName(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { "евро", "евро", "евро" };
@@ -153,9 +157,9 @@ namespace Cyriller
                 throw new ArgumentOutOfRangeException("Invalid decline case!");
             }
 
-            public override string[] GetDecimalName(CasesEnum Case)
+            public override string[] GetDecimalName(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { "цент", "цента", "центов" };
@@ -179,14 +183,15 @@ namespace Cyriller
         {
             public YuanCurrency()
             {
+                this.Name = "Китайский юань (CNY) ¥";
                 this.IntegerGender = GendersEnum.Masculine;
                 this.DecimalGender = GendersEnum.Masculine;
                 this.Decimals = 1;
             }
 
-            public override string[] GetIntegerName(CasesEnum Case)
+            public override string[] GetIntegerName(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { "юань", "юаня", "юаней" };

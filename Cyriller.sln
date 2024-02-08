@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller", "Cyriller\Cyriller.csproj", "{18887BCA-64CF-4FD0-84F5-3003B3003640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cyriller", "Cyriller\Cyriller.csproj", "{18887BCA-64CF-4FD0-84F5-3003B3003640}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{72F240C7-406C-45D9-AFC6-57F0DA338CBF}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,24 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller.Checker", "Cyriller.Checker\Cyriller.Checker.csproj", "{A08715C4-9E57-40E1-857D-EFCE250FED54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller.Web", "Cyriller.Web\Cyriller.Web.csproj", "{B4EE6BD2-7870-4875-A3B1-E128CD229BD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F2AE49F-F3DD-40B5-9E14-D6AB102F1D91}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyriller.Tests", "Cyriller.Tests\Cyriller.Tests.csproj", "{357DB615-6EE9-47CF-8F69-570CB7B96BDF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cyriller.Model", "Cyriller.Model\Cyriller.Model.csproj", "{F345518F-1D1F-441F-A429-B6D028D609E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cyriller.Rule", "Cyriller.Rule\Cyriller.Rule.csproj", "{D5313EA2-BFD9-41E8-9A54-D31F156081D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cyriller.Zipper", "Cyriller.Zipper\Cyriller.Zipper.csproj", "{BA64DBCB-DCAF-4DA6-B454-D5A1086378B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cyriller.Samples", "Cyriller.Samples\Cyriller.Samples.csproj", "{9D3FD2E6-A5D1-490C-AAC7-B341F1696BBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cyriller.Desktop", "Cyriller.Desktop\Cyriller.Desktop.csproj", "{0F940EEB-C814-4107-80A2-5ED9177D1BBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,8 +52,35 @@ Global
 		{B4EE6BD2-7870-4875-A3B1-E128CD229BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4EE6BD2-7870-4875-A3B1-E128CD229BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4EE6BD2-7870-4875-A3B1-E128CD229BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{357DB615-6EE9-47CF-8F69-570CB7B96BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{357DB615-6EE9-47CF-8F69-570CB7B96BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{357DB615-6EE9-47CF-8F69-570CB7B96BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{357DB615-6EE9-47CF-8F69-570CB7B96BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F345518F-1D1F-441F-A429-B6D028D609E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F345518F-1D1F-441F-A429-B6D028D609E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F345518F-1D1F-441F-A429-B6D028D609E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F345518F-1D1F-441F-A429-B6D028D609E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5313EA2-BFD9-41E8-9A54-D31F156081D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5313EA2-BFD9-41E8-9A54-D31F156081D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5313EA2-BFD9-41E8-9A54-D31F156081D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5313EA2-BFD9-41E8-9A54-D31F156081D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA64DBCB-DCAF-4DA6-B454-D5A1086378B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA64DBCB-DCAF-4DA6-B454-D5A1086378B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA64DBCB-DCAF-4DA6-B454-D5A1086378B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA64DBCB-DCAF-4DA6-B454-D5A1086378B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D3FD2E6-A5D1-490C-AAC7-B341F1696BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D3FD2E6-A5D1-490C-AAC7-B341F1696BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D3FD2E6-A5D1-490C-AAC7-B341F1696BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D3FD2E6-A5D1-490C-AAC7-B341F1696BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F940EEB-C814-4107-80A2-5ED9177D1BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F940EEB-C814-4107-80A2-5ED9177D1BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F940EEB-C814-4107-80A2-5ED9177D1BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F940EEB-C814-4107-80A2-5ED9177D1BBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE18E6B9-64A7-4D85-A887-6728F452D743}
 	EndGlobalSection
 EndGlobal

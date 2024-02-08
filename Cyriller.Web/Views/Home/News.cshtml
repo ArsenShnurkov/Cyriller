@@ -5,6 +5,74 @@
 <h1>Кириллер - новости проекта</h1>
 <div class="news">
     <div class="news-item">
+        <time class="news-date" datetime="2019-08-10">10-го августа 2019 г.</time>
+        <h2 class="news-title">
+            Кириллер <code>0.1.0</code> с поддержкой <code>.netstandard2.0</code>
+        </h2>
+        <div class="news-body">
+            <ul>
+                <li>Поддержка netstandard2.0 и net45 для использования в приложениях под управлением .NET Core и .NET Framework.</li>
+                <li>Новая схема хранения и использования словарей с возможностью распознавания существительных и прилагательных во всех склонениях.</li>
+                <li>
+                    <a href="https://github.com/miyconst/Cyriller/releases" target="_blank">Cyriller.Desktop</a>
+                    - настольное приложение для Windows и Linux.
+                </li>
+                <li>Новая лицензия - <a href="https://www.gnu.org/licenses/lgpl-3.0-standalone.html" target="_blank">LGPL-3.0</a>.</li>
+            </ul>
+            <p>
+                <b>Важно</b>: API версии <code>0.1.0</code> не совместим с предыдущими версиями.
+            </p>
+            <ul>
+                <li>
+                    NuGet пакет - <a href="https://www.nuget.org/packages/Miyconst.Cyriller/0.1.0" target="_blank"><code>Miyconst.Cyriller 0.1.0</code></a>.
+                </li>
+                <li>
+                    GitHub выпуск - <a href="https://github.com/miyconst/Cyriller/releases/tag/0.1.0" target="_blank">Исходный код и бинарники</a>.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="news-item">
+        <time class="news-date" datetime="2017-11-18">18-го ноября 2017 г.</time>
+        <h2 class="news-title">
+            Выпущена следующая версия NuGet пакета - <a href="https://www.nuget.org/packages/Miyconst.Cyriller/0.0.2" target="_blank">0.0.2</a>
+        </h2>
+        <div class="news-body">
+            <ul>
+                <li>Исправлена ошибка при склонении некоторых слов с дефисом.</li>
+                <li>Исправлено склонение слов <code>Белосельский-белозерский</code>, <code>Кондрашёв-иванов</code>, <code>Иванов-петров</code>, <code>осетин-иронец</code> и <code>Петропавловск-камчатский</code>.</li>
+                <li>Обновлена база данных для проверки склонения.</li>
+                <li>Реализован первый XUnit тест для проверки склонения существительных.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="news-item">
+        <time class="news-date" datetime="2017-10-22">22-го октября 2017 г.</time>
+        <h2 class="news-title">
+            Выпущена первая версия NuGet пакета - <a href="https://www.nuget.org/packages/Miyconst.Cyriller/0.0.1" target="_blank">0.0.1</a>
+        </h2>
+        <div class="news-body">
+            <p>Теперь Кириллер можно установить как NuGet пакет - <a href="https://www.nuget.org/packages/Miyconst.Cyriller" target="_blank">Miyconst.Cyriller</a>.</p>
+        </div>
+    </div>
+    <div class="news-item">
+        <time class="news-date" datetime="2017-08-18">18-го августа 2017 г.</time>
+        <h2 class="news-title">
+            Массовое склонение слов и фраз
+        </h2>
+        <div class="news-body">
+            <p>
+                После многочисленных просьб сделать массовое склонение, у меня наконец-то дошли руки до этой задачи.
+            </p>
+            <p>
+                Добавлена возможность склонять сразу много (до 50) слов или фраз – <a href="@Url.Content("~/Decline/List")">Склонять много фраз</a>.
+            </p>
+            <p>
+                Добавлена возможность склонять слова или фразы в текстовых и Microsoft Excel документах – <a href="@Url.Content("~/Decline/File")">Склонять файл</a>.
+            </p>
+        </div>
+    </div>
+    <div class="news-item">
         <time class="news-date" datetime="2015-02-16">16-го февраля 2015 г.</time>
         <h2 class="news-title">
             Полная переработка проекта и добавление новых возможностей

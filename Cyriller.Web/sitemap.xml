@@ -1,50 +1,62 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://cyriller.2go.ws/</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/Decline/Noun</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/Decline/Noun</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/Decline/Adjective</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/Decline/Adjective</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/Decline/Phrase</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/Decline/Phrase</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/Decline/Number</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/Decline/Number</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/Download</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/Decline/List</loc>
+    <lastmod>2019-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>http://cyriller.2try.ws/Decline/File</loc>
+    <lastmod>2019-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>http://cyriller.2try.ws/Download</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/News</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/News</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://cyriller.2go.ws/Contacts</loc>
-    <lastmod>2015-02-16</lastmod>
+    <loc>http://cyriller.2try.ws/Contacts</loc>
+    <lastmod>2019-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

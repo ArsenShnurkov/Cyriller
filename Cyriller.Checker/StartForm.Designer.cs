@@ -39,6 +39,8 @@
             this.msiPhrase = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.msiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiDictionary = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiExportToJson = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContainer = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -57,17 +59,19 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 561);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 729);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msiFile});
+            this.msiFile,
+            this.msiDictionary});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(984, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -130,23 +134,38 @@
             this.msiExit.Text = "Выход";
             this.msiExit.Click += new System.EventHandler(this.msiExit_Click);
             // 
+            // msiDictionary
+            // 
+            this.msiDictionary.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiExportToJson});
+            this.msiDictionary.Name = "msiDictionary";
+            this.msiDictionary.Size = new System.Drawing.Size(66, 26);
+            this.msiDictionary.Text = "Словарь";
+            // 
+            // msiExportToJson
+            // 
+            this.msiExportToJson.Name = "msiExportToJson";
+            this.msiExportToJson.Size = new System.Drawing.Size(171, 22);
+            this.msiExportToJson.Text = "Выгрузить в JSON";
+            this.msiExportToJson.Click += new System.EventHandler(this.msiExportToJson_Click);
+            // 
             // pnlContainer
             // 
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContainer.Location = new System.Drawing.Point(3, 33);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(978, 525);
+            this.pnlContainer.Size = new System.Drawing.Size(1002, 693);
             this.pnlContainer.TabIndex = 1;
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(648, 551);
             this.Name = "StartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Кириллер - бесплатная программа склонения по падежам";
@@ -172,5 +191,7 @@
         private System.Windows.Forms.ToolStripMenuItem msiAdjective;
         private System.Windows.Forms.ToolStripMenuItem msiPhrase;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem msiDictionary;
+        private System.Windows.Forms.ToolStripMenuItem msiExportToJson;
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using Cyriller;
+@using Cyriller.Web.Models;
 @{
     string text = ViewBag.Text;
     string h;
@@ -27,54 +28,48 @@
     <legend></legend>
     <form method="get" class="decline-form form-horizontal">
         <div class="col-lg-10">
-            <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите существительное в именительном падеже" />
+            <input type="text" name="w" class="form-control" value="@text" required="required" placeholder="Введите существительное в любом падеже" />
         </div>
         <div class="col-lg-2">
             <button class="btn btn-primary" type="submit">Склонять</button>
         </div>
     </form>
 </fieldset>
-@if (ViewBag.Words != null)
+@if (ViewBag.Results != null)
 {
-    for (int i = 0; i < ViewBag.Words.Count; i++)
+    foreach (CyrNounDeclineResult result in ViewBag.Results)
     {
-        CyrNoun cyr = ViewBag.Words[i];
-        CyrResult singular = ViewBag.Singulars[i];
-        CyrResult plural = ViewBag.Plurals[i];
+        string[] values = new string[] { result.FoundCaseStringRu, result.FoundNumberStringRu, result.GenderStringRu, result.AnimatedStringRu, result.WordTypeStringRu };
+        string[] css = new string[] { "case", "number", "gender", "animate", "type" };
+
         <h2 class="h-word">
-            <strong>@cyr.Name</strong>,
-            <span class="gender">
-                @switch (cyr.Gender)
-                {
-                    case Cyriller.Model.GendersEnum.Feminine: <em>женский</em>; break;
-                    case Cyriller.Model.GendersEnum.Neuter: <em>средний</em>; break;
-                    default:  <em>мужской</em>; break;
-                }
-                род,
-            </span>
-            <span class="animate">
-                <em>@(cyr.IsAnimated ? "одушевленное" : "неодушевленное")</em>@(cyr.WordType != 0 ? "," : string.Empty)
-            </span>
-            @if (cyr.WordType != 0)
+            <strong>@result.OriginalWord</strong>,
+
+            @for (int i = 0; i < values.Length; i++)
             {
-                <span class="type">
-                    @switch (cyr.WordType)
+                if (string.IsNullOrEmpty(values[i]))
+                {
+                    continue;
+                }
+
+                bool isLast = !values.Skip(i + 1).Any(x => !string.IsNullOrEmpty(x));
+
+                <span class="@css[i]">
+                    @if (isLast)
                     {
-                        case Cyriller.Model.WordTypesEnum.Abbreviation: <em>аббревиатура</em>; break;
-                        case Cyriller.Model.WordTypesEnum.Name: <em>имя</em>; break;
-                        case Cyriller.Model.WordTypesEnum.Surname: <em>фамилия</em>; break;
-                        case Cyriller.Model.WordTypesEnum.Patronymic: <em>отчество</em>; break;
-                        case Cyriller.Model.WordTypesEnum.Toponym: <em>топоним</em>; break;
-                        case Cyriller.Model.WordTypesEnum.Organization: <em>организация</em>; break;
-                        default: <em>без типа</em>; break;
+                        <em>@values[i]</em>
+                    }
+                    else
+                    {
+                        <em>@values[i]</em>@:,
                     }
                 </span>
             }
         </h2>
-        if (!cyr.ExactMatch)
+        if (!result.ExactMatch)
         {
             <div class="alert alert-danger">
-                Слова <strong>@cyr.Name</strong> нет в словаре, но есть слово <strong>@cyr.CollectionName</strong>
+                Слова <strong>@result.OriginalWord</strong> нет в словаре, но есть слово <strong>@result.FoundWord</strong>
             </div>
         }
         <table class="table table-bordered table-cases">
@@ -86,72 +81,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        Именительный, <span class="label label-default">Кто? Что? (есть)</span>
-                    </td>
-                    <td>
-                        @singular[1]
-                    </td>
-                    <td>
-                        @plural[1]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Родительный, <span class="label label-default">Кого? Чего? (нет)</span>
-                    </td>
-                    <td>
-                        @singular[2]
-                    </td>
-                    <td>
-                        @plural[2]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Дательный, <span class="label label-default">Кому? Чему? (дам)</span>
-                    </td>
-                    <td>
-                        @singular[3]
-                    </td>
-                    <td>
-                        @plural[3]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Винительный, <span class="label label-default">Кого? Что? (вижу)</span>
-                    </td>
-                    <td>
-                        @singular[4]
-                    </td>
-                    <td>
-                        @plural[4]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Творительный, <span class="label label-default">Кем? Чем? (горжусь)</span>
-                    </td>
-                    <td>
-                        @singular[5]
-                    </td>
-                    <td>
-                        @plural[5]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Предложный, <span class="label label-default">О ком? О чем? (думаю)</span>
-                    </td>
-                    <td>
-                        @singular[6]
-                    </td>
-                    <td>
-                        @plural[6]
-                    </td>
-                </tr>
+                @foreach (CyrDeclineCase dc in ViewBag.Cases)
+                {
+                    <tr>
+                        <td>
+                            @dc.NameRu, <span class="label label-default">@dc.Description</span>
+                        </td>
+                        <td>
+                            @result.Singular[dc.Index]
+                        </td>
+                        <td>
+                            @result.Plural[dc.Index]
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     }
@@ -159,7 +102,7 @@
 else
 {
     <p class="p p-examples">
-        Введите слово или полное ФИО для склонения по падежам.<br />Например:
+        Введите существительное, в любом числе и падеже, для склонения по падежам.<br />Например:
         <a href="javascript:">компьютер</a>,
         <a href="javascript:">пиво</a>,
         <a href="javascript:">кофе</a>,

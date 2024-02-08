@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -66,6 +69,18 @@
     </Compile>
     <Compile Include="AdjectiveForm.Designer.cs">
       <DependentUpon>AdjectiveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JsonForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JsonForm.Designer.cs">
+      <DependentUpon>JsonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Animate.cs">
       <DependentUpon>CyrillerModel.tt</DependentUpon>
@@ -141,6 +156,12 @@
     <EmbeddedResource Include="AdjectiveForm.resx">
       <DependentUpon>AdjectiveForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JsonForm.resx">
+      <DependentUpon>JsonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NounForm.resx">
       <DependentUpon>NounForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +224,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cyriller.Model\Cyriller.Model.csproj">
+      <Project>{f345518f-1d1f-441f-a429-b6d028d609e3}</Project>
+      <Name>Cyriller.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cyriller\Cyriller.csproj">
       <Project>{18887bca-64cf-4fd0-84f5-3003b3003640}</Project>
       <Name>Cyriller</Name>

@@ -22,6 +22,8 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,12 +128,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CyrAdjectiveDeclineResult.cs" />
+    <Compile Include="Models\CyrBaseDeclineResult.cs" />
+    <Compile Include="Models\CyrNounDeclineResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\google.png" />
+    <Content Include="Content\images\linkedin.png" />
     <Content Include="Content\images\logo-small.png" />
+    <Content Include="Content\images\twitter.png" />
+    <Content Include="Content\images\vk.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -158,7 +171,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +183,10 @@
     <Content Include="fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cyriller.Model\Cyriller.Model.csproj">
+      <Project>{f345518f-1d1f-441f-a429-b6d028d609e3}</Project>
+      <Name>Cyriller.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cyriller\Cyriller.csproj">
       <Project>{18887bca-64cf-4fd0-84f5-3003b3003640}</Project>
       <Name>Cyriller</Name>
@@ -205,6 +221,9 @@
     <Content Include="Views\Decline\Adjective.cshtml" />
     <Content Include="Views\Decline\Phrase.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Decline\List.cshtml" />
+    <Content Include="Views\Decline\File.cshtml" />
+    <Content Include="Views\Shared\_Donate.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

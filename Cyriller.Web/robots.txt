@@ -8,5 +8,5 @@ Disallow: /Scripts/
 Disallow: /Home/
 Disallow: /Thanks/
 Disallow: /Error/
-Host: cyriller.2go.ws
-Sitemap: http://cyriller.2go.ws/sitemap.xml
+Host: cyriller.2try.ws
+Sitemap: http://cyriller.2try.ws/sitemap.xml

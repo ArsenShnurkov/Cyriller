@@ -9,20 +9,20 @@ namespace Cyriller
 {
     public class CyrPhrase
     {
-        protected CyrNounCollection nouCollection;
+        protected CyrNounCollection nounCollection;
         protected CyrAdjectiveCollection adjCollection;
 
-        public CyrPhrase(CyrNounCollection NouCollection, CyrAdjectiveCollection AdjCollection)
+        public CyrPhrase(CyrNounCollection nounCollection, CyrAdjectiveCollection adjCollection)
         {
-            this.nouCollection = NouCollection;
-            this.adjCollection = AdjCollection;
+            this.nounCollection = nounCollection;
+            this.adjCollection = adjCollection;
         }
 
-        public SpeechPartsEnum DetermineSpeechPart(string Word)
+        public SpeechPartsEnum DetermineSpeechPart(string word)
         {
             string[] ends = new string[] { "ый", "ий", "ой", "ся", "ая", "яя", "ое", "ее" };
 
-            if (ends.Any(val => Word.EndsWith(val)))
+            if (ends.Any(val => word.EndsWith(val)))
             {
                 return SpeechPartsEnum.Adjective;
             }
@@ -30,9 +30,9 @@ namespace Cyriller
             return SpeechPartsEnum.Noun;
         }
 
-        public CyrResult Decline(string Phrase, GetConditionsEnum Condition)
+        public CyrResult Decline(string phrase, GetConditionsEnum condition)
         {
-            return this.Decline(Phrase, Condition, NumbersEnum.Singular);
+            return this.Decline(phrase, condition, NumbersEnum.Singular);
         }
 
         public CyrResult DeclinePlural(string Phrase, GetConditionsEnum Condition)
@@ -40,33 +40,57 @@ namespace Cyriller
             return this.Decline(Phrase, Condition, NumbersEnum.Plural);
         }
 
-        protected CyrResult Decline(string Phrase, GetConditionsEnum Condition, NumbersEnum Number)
+        protected CyrResult Decline(string phrase, GetConditionsEnum condition, NumbersEnum number)
         {
-            if (Phrase.IsNullOrEmpty())
+            if (phrase.IsNullOrEmpty())
             {
                 return new CyrResult();
             }
 
             List<object> words = new List<object>();
-            string[] parts = Phrase.Split(' ').Select(val => val.Trim()).Where(val => val.IsNotNullOrEmpty()).ToArray();
+            string[] parts = phrase.Split(' ').Select(val => val.Trim()).Where(val => val.IsNotNullOrEmpty()).ToArray();
             List<CyrResult> results = new List<CyrResult>();
             
             foreach (string w in parts)
             {
                 SpeechPartsEnum speech = this.DetermineSpeechPart(w);
+                string fw;
+                GendersEnum g;
+                CasesEnum c;
+                NumbersEnum n;
 
                 switch (speech)
                 {
                     case SpeechPartsEnum.Adjective:
-                        CyrAdjective adj = this.adjCollection.Get(w, Condition);
+                        CyrAdjective adj = null;
+
+                        if (condition == GetConditionsEnum.Strict)
+                        {
+                            adj = this.adjCollection.Get(w, out g, out c, out n, out AnimatesEnum a);
+                        }
+                        else
+                        {
+                            adj = this.adjCollection.Get(w, out fw, out g, out c, out n, out AnimatesEnum a);
+                        }
+
                         words.Add(adj);
                         break;
                     case SpeechPartsEnum.Noun:
-                        CyrNoun noun = this.nouCollection.Get(w, Condition);
+                        CyrNoun noun = null;
+
+                        if (condition == GetConditionsEnum.Strict)
+                        {
+                            noun = this.nounCollection.Get(w, out c, out n);
+                        }
+                        else
+                        {
+                            noun = this.nounCollection.Get(w, out fw, out c, out n);
+                        }
+
                         words.Add(noun);
                         break;
                     default:
-                        throw new ArgumentException("This speech part is not supported yet. Speech part: " + speech.ToString());
+                        throw new NotImplementedException("This speech part is not supported yet. Speech part: " + speech.ToString());
                 }
             }
 
@@ -76,7 +100,7 @@ namespace Cyriller
 
                 if (noun != null)
                 {
-                    if (Number == NumbersEnum.Plural)
+                    if (number == NumbersEnum.Plural)
                     {
                         results.Add(noun.DeclinePlural());
                     }
@@ -92,7 +116,7 @@ namespace Cyriller
                 
                 noun = this.GetNextPreviousNoun(words, i);
 
-                if (Number == NumbersEnum.Plural)
+                if (number == NumbersEnum.Plural)
                 {
                     if (noun != null)
                     {
@@ -107,11 +131,11 @@ namespace Cyriller
                 {
                     if (noun != null)
                     {
-                        results.Add(adj.Decline(noun.Animate));
+                        results.Add(adj.Decline(noun.Gender, noun.Animate));
                     }
                     else
                     {
-                        results.Add(adj.Decline(AnimatesEnum.Animated));
+                        results.Add(adj.Decline(GendersEnum.Masculine, AnimatesEnum.Animated));
                     }
                 }
             }
@@ -126,38 +150,38 @@ namespace Cyriller
             return result;
         }
 
-        protected CyrNoun GetNextPreviousNoun(List<object> Words, int Index)
+        protected CyrNoun GetNextPreviousNoun(List<object> words, int index)
         {
-            CyrNoun noun = this.GetNextNoun(Words, Index);
+            CyrNoun noun = this.GetNextNoun(words, index);
 
             if (noun == null)
             {
-                noun = this.GetPreviousNoun(Words, Index);
+                noun = this.GetPreviousNoun(words, index);
             }
 
             return noun;
         }
 
-        protected CyrNoun GetNextNoun(List<object> Words, int Index)
+        protected CyrNoun GetNextNoun(List<object> words, int index)
         {
-            for (int i = Index + 1; i < Words.Count; i++)
+            for (int i = index + 1; i < words.Count; i++)
             {
-                if (Words[i] is CyrNoun)
+                if (words[i] is CyrNoun)
                 {
-                    return Words[i] as CyrNoun;
+                    return words[i] as CyrNoun;
                 }
             }
 
             return null;
         }
 
-        protected CyrNoun GetPreviousNoun(List<object> Words, int Index)
+        protected CyrNoun GetPreviousNoun(List<object> words, int index)
         {
-            for (int i = Index - 1; i >= 0; i--)
+            for (int i = index - 1; i >= 0; i--)
             {
-                if (Words[i] is CyrNoun)
+                if (words[i] is CyrNoun)
                 {
-                    return Words[i] as CyrNoun;
+                    return words[i] as CyrNoun;
                 }
             }
 

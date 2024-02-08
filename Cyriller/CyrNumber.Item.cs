@@ -22,19 +22,19 @@ namespace Cyriller
                 this.plural = noun.DeclinePlural();
             }
 
-            public string[] GetName(CasesEnum Case, long Value)
+            public string[] GetName(CasesEnum @case, long value)
             {
                 if (this.Gender == GendersEnum.Feminine)
                 {
-                    return GetFeminine(Case);
+                    return GetFeminine(@case);
                 }
                 else if (this.Gender == GendersEnum.Neuter)
                 {
-                    return GetNeuter(Case);
+                    return GetNeuter(@case);
                 }
                 else
                 {
-                    return this.GetMasculine(Case, Value);
+                    return this.GetMasculine(@case, value);
                 }
             }
 
@@ -54,11 +54,11 @@ namespace Cyriller
                 }
             }
 
-            protected string[] GetMasculine(CasesEnum Case, long Value)
+            protected string[] GetMasculine(CasesEnum @case, long value)
             {
-                if (this.Animate == AnimatesEnum.Animated && Value < 20)
+                if (this.Animate == AnimatesEnum.Animated && value < 20)
                 {
-                    switch (Case)
+                    switch (@case)
                     {
                         case CasesEnum.Nominative:
                             return new string[] { singular[1], singular[2], plural[2] };
@@ -78,7 +78,7 @@ namespace Cyriller
                 }
                 else
                 {
-                    switch (Case)
+                    switch (@case)
                     {
                         case CasesEnum.Nominative:
                             if (noun.Name.ToLower() == "год")
@@ -113,9 +113,9 @@ namespace Cyriller
                 }
             }
 
-            protected string[] GetFeminine(CasesEnum Case)
+            protected string[] GetFeminine(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { singular[1], singular[2], plural[2] };
@@ -134,9 +134,9 @@ namespace Cyriller
                 }
             }
 
-            protected string[] GetNeuter(CasesEnum Case)
+            protected string[] GetNeuter(CasesEnum @case)
             {
-                switch (Case)
+                switch (@case)
                 {
                     case CasesEnum.Nominative:
                         return new string[] { singular[1], singular[2], plural[2] };

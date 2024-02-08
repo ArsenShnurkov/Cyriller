@@ -1,7 +1,0 @@
-E:\Miyconst\Cyriller\Cyriller\bin\Release\Cyriller.dll
-E:\Miyconst\Cyriller\Cyriller\bin\Release\Cyriller.pdb
-E:\Miyconst\Cyriller\Cyriller\obj\Release\Cyriller.csprojResolveAssemblyReference.cache
-E:\Miyconst\Cyriller\Cyriller\obj\Release\Cyriller.Properties.Resources.resources
-E:\Miyconst\Cyriller\Cyriller\obj\Release\Cyriller.csproj.GenerateResource.Cache
-E:\Miyconst\Cyriller\Cyriller\obj\Release\Cyriller.dll
-E:\Miyconst\Cyriller\Cyriller\obj\Release\Cyriller.pdb
